@@ -1,4 +1,4 @@
-import random ,os , pandas as pd ,Greeting
+import random ,os  ,Greeting
 nameList=[]
 typeList=[]
 def Intro():
@@ -158,21 +158,22 @@ class BattleShips:
             self.hp -= hp * (random.randrange(50, 81) / 100)
             self.armor -= armor * (random.randrange(60, 81) / 100)
             print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
-        if self.hp <= 0:
-            BattleShips(type, name).TheEnd()
-            return "END"
         pass
 
-    def TheEnd(self):
-        print(f"Captains are the last to leave their ships\nTHE END")
-        print("------------------------------------------------------------------------------------")
-        return "END"
+
 
 Ship1 = BattleShips(typeList[0], nameList[0])
 Ship2 = BattleShips(typeList[1], nameList[1])
 while not Ship1.hp<=0 or not Ship2.hp<=0:
+    if Ship1.hp<=0:
+        print(f"Captain {Ship2.name} is the ruler of the seas\nTHE END")
+        break
+    elif Ship2.hp<=0:
+        print(f"Captain {Ship1.name} is the ruler of the seas\nTHE END")
+        break
     hp1 , armor1=Ship1.ShipFire()
     Ship2.ShipDefense(hp1 , armor1)
     hp2, armor2=Ship2.ShipFire()
     Ship1.ShipDefense(hp2,armor2)
+
 
