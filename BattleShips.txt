@@ -1,11 +1,10 @@
 ------------------------------------------------------------------------------------
 Destroyer:
     Advantages:
-        *800 health
         *10 seconds reload time
         *Can fire torpedoes 4 times (Dealing AP bullet affect)
-        *Low hit chance
     Disadvantages:
+        *800 health
         *100 armor
         *4 canons (Max damage = 100)
         *1 type of bullet HP (High-Spreader shell)
@@ -18,7 +17,6 @@ Cruisers:
         *1400 health
     Disadvantages:
         *200 armor
-        *High hit chance
         *30 seconds reload time
 
 Armored:
@@ -28,6 +26,5 @@ Armored:
         *8 canons
         *2 type of bullet HP & AP (High-Spreader and Armor Piercing shells)
     Disadvantages:
-        *Very high hit chance
         *60 seconds reload time
 ------------------------------------------------------------------------------------
