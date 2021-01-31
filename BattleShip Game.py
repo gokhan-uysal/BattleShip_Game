@@ -171,7 +171,6 @@ class BattleShips:
 Ship1 = BattleShips(typeList[0], nameList[0])
 Ship2 = BattleShips(typeList[1], nameList[1])
 while not Ship1.hp<=0 or not Ship2.hp<=0:
-    print(Ship1.hp,Ship2.hp)
     hp1 , armor1=Ship1.ShipFire()
     Ship2.ShipDefense(hp1 , armor1)
     hp2, armor2=Ship2.ShipFire()
