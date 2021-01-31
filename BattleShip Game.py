@@ -40,7 +40,7 @@ class BattleShips:
         self.type = type
         self.name = name
         if type=="Destroyer":
-            self.hp=800
+            self.hp=1200
             self.armor=100
             self.reloadTime=10
             self.numberOfCanons=4
@@ -51,7 +51,7 @@ class BattleShips:
             self.reloadTime=30
             self.numberOfCanons=6
         elif type=="Armored":
-            self.hp=2000
+            self.hp=1600
             self.armor=400
             self.reloadTime=60
             self.numberOfCanons=8
@@ -59,7 +59,7 @@ class BattleShips:
 
     def ShipFire(self):
 
-        def CanonBreak():
+        def CanonBreak(type):
             numberOfCanons = self.numberOfCanons
             Chance = random.randrange(0, 21)
             if Chance == 10:
@@ -145,19 +145,20 @@ class BattleShips:
                     return (int(hp) , 0)
 
     def ShipDefense(self,hp,armor):
-
         if self.type == "Destroyer":
             self.hp -= hp * (random.randrange(90, 101) / 100)
             self.armor -= armor * (random.randrange(40, 61) / 100)
-            print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
         elif self.type == "Cruiser":
             self.hp -= hp * (random.randrange(70, 91) / 100)
             self.armor -= armor * (random.randrange(50, 71) / 100)
-            print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
         elif self.type == "Armored":
-            self.hp -= hp * (random.randrange(50, 81) / 100)
-            self.armor -= armor * (random.randrange(60, 81) / 100)
-            print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+            if self.armor <= 0:
+                self.hp -= hp
+                self.armor=0
+            else:
+                self.hp -= hp * (random.randrange(50, 81) / 100)
+                self.armor -= armor * (random.randrange(60, 81) / 100)
+        print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
         pass
 
 
