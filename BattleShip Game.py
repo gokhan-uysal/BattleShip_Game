@@ -89,7 +89,7 @@ class BattleShips:
                         i += 1
                         print(f"Firing HP shells with {numberOfCanons} out of {self.numberOfCanons} canons Captain {name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
                         print("------------------------------------------------------------------------------------")
-                        return hp, 0
+                        return (int(hp) ,0)
                     elif bulletType.upper().strip()=="TP":
                         self.numberOfTorpedoes=self.numberOfTorpedoes-1
                         hit = 400 * (random.randrange(65, 91)/100)
@@ -144,11 +144,7 @@ class BattleShips:
                     print("------------------------------------------------------------------------------------")
                     return (int(hp) , 0)
 
-    def ShipDefense(self):
-        if self.type==typeList[0] and self.name==nameList[0]:
-            hp,armor=BattleShips(typeList[1],nameList[1]).ShipFire()
-        elif self.type==typeList[1] and self.name==nameList[1]:
-            hp,armor=BattleShips(typeList[0],nameList[0]).ShipFire()
+    def ShipDefense(self,hp,armor):
 
         if self.type == "Destroyer":
             self.hp -= hp * (random.randrange(90, 101) / 100)
@@ -174,7 +170,10 @@ class BattleShips:
 
 Ship1 = BattleShips(typeList[0], nameList[0])
 Ship2 = BattleShips(typeList[1], nameList[1])
-while not Ship1.ShipDefense()=="END" or not Ship2.ShipDefense()=="END":
-    Ship1.ShipFire()
-    Ship2.ShipFire()
+while not Ship1.hp<=0 or not Ship2.hp<=0:
+    print(Ship1.hp,Ship2.hp)
+    hp1 , armor1=Ship1.ShipFire()
+    Ship2.ShipDefense(hp1 , armor1)
+    hp2, armor2=Ship2.ShipFire()
+    Ship1.ShipDefense(hp2,armor2)
 
