@@ -57,12 +57,12 @@ class BattleShips(AirStrike):
             self.armor = 100
             self.numberOfCanons = 4
             self.numberOfTorpedoes = 6
-            self.selfDefense = 1
+            self.selfDefense = 2
         elif self.type == "Cruiser":
             self.hp = 1400
             self.armor = 200
             self.numberOfCanons = 6
-            self.selfDefense = 1
+            self.selfDefense = 2
         elif self.type == "Armored":
             self.hp = 1600
             self.armor = 400
@@ -70,11 +70,12 @@ class BattleShips(AirStrike):
             self.selfDefense = 2
             self.Round = 0
         elif self.type == "Submarine":
-            self.hp = 500
+            self.hp = 400
             self.armor = 800
             self.numberOfNuces = 1
             self.numberOfJericho = 3
-            self.numberOfTorpedoes = 8
+            self.numberOfTorpedoes = 6
+            self.selfDefense=1
             self.criticHit = 1
             self.Round = 0
         pass
@@ -251,7 +252,7 @@ class BattleShips(AirStrike):
                                 hp = hit
                                 i += 1
                                 print(
-                                    f"Firing Jericho Missiles out of {self.numberOfJericho} Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
+                                    f"Firing 1 Jericho Missiles out of {self.numberOfJericho} Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
                                 print(
                                     "------------------------------------------------------------------------------------")
                                 return (int(hp), 0, "JR")
@@ -277,7 +278,7 @@ class BattleShips(AirStrike):
                             hp = hit
                             i += 1
                             print(
-                                f"Firing Jericho Missiles Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
+                                f"Firing 1 Jericho Missiles out of {self.numberOfJericho} Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
                             print(
                                 "------------------------------------------------------------------------------------")
                             return (int(hp), 0, "JR")
@@ -665,16 +666,74 @@ class BattleShips(AirStrike):
 
 
         elif self.type == "Submarine":
-            if bullet == "AP" or bullet == "HP" or bullet == "TP":
-                if self.armor <= 0:
-                    self.hp -= hp
-                    self.armor = 0
-                else:
-                    hp = hp * (random.randrange(50, 81) / 100)
-                    armor = armor * (random.randrange(70, 91) / 100)
-                    self.hp -= hp
-                    self.armor -= armor
-            print(f"-{int(hp)}hp\n-{int(armor)} armor")
+            if self.armor>0:
+                if bullet == "AP" or bullet == "HP":
+                    chance = random.randrange(1, 11)
+                    if chance == 1 or chance == 2 or chance==3:
+                        print("MISS SIR")
+                    else:
+                        print("DIRECT HIT SIR")
+                        if self.selfDefense > 0:
+                            loop = 0
+                            while (loop == 0):
+                                Defense = str(input(f"Want to dive {-820}ft\n+{hp}hp +{armor} armor\n[YES/NO]"))
+                                if Defense.strip().lower()=="yes":
+                                    print("Ballas tanks are filled with water ready to dive....")
+                                    self.selfDefense-=1
+                                    loop+=1
+                                elif Defense.strip().lower()=="no":
+                                    self.hp-=hp
+                                    self.armor=-armor
+                                    print(f"-{int(hp)}hp\n-{int(armor)} armor")
+                                    loop+=1
+                                else:
+                                    print("Waiting for your order....")
+                        else:
+                            print("DIRECT HIT SIR")
+                            self.hp -= hp
+                            self.armor = -armor
+                            print(f"-{int(hp)}hp\n-{int(armor)} armor")
+
+                elif bullet=="TP":
+                    print("DIRECT HIT SIR")
+                    self.hp-=hp
+                    self.armor-=armor
+                    print(f"-{int(hp)}hp\n-{int(armor)} armor")
+
+
+            else:
+                self.armor=0
+                if bullet == "AP" or bullet == "HP":
+                    chance = random.randrange(1, 11)
+                    if chance == 1 or chance == 2 or chance==3:
+                        print("MISS SIR")
+                    else:
+                        print("DIRECT HIT SIR")
+                        if self.selfDefense > 0:
+                            loop = 0
+                            while (loop == 0):
+                                Defense = str(input(f"Want to dive {-820}ft\n+{hp}hp +{armor} armor\n[YES/NO]"))
+                                if Defense.strip().lower()=="yes":
+                                    print("Ballas tanks are filled with water ready to dive....")
+                                    self.selfDefense-=1
+                                    loop+=1
+                                elif Defense.strip().lower()=="no":
+                                    self.hp-=(hp+armor)
+                                    print(f"-{int(hp)}hp\n-{int(armor)} armor")
+                                    loop+=1
+                                else:
+                                    print("Waiting for your order....")
+                        else:
+                            print("DIRECT HIT SIR")
+                            self.hp -= hp
+                            self.armor = -armor
+                            print(f"-{int(hp)}hp\n-{int(armor)} armor")
+
+                elif bullet == "TP":
+                    print("DIRECT HIT SIR")
+                    self.hp -= (hp+armor)
+                    print(f"-{int(hp)}hp\n-{int(armor)} armor")
+
         print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
         print("------------------------------------------------------------------------------------")
 
@@ -707,3 +766,5 @@ while not Ship1.hp <= 0 or not Ship2.hp <= 0 and not ROUND <= 0:
         ROUND = -1
         break
     ROUND += 1
+for values in nameList:
+    Greeting.Greetings(values)

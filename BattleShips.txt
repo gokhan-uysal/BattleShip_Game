@@ -4,7 +4,7 @@ Destroyer:
         *Can shoot every round
         *Can fire Torpedoes 6 times
             (Dealing AP bullet affect)
-        * 1X Self defense system: Phalanx CIWS
+        * 2X Self defense system: Phalanx CIWS
             (HP & AP bullet only)
         *Low hit chance
     Disadvantages:
@@ -22,7 +22,7 @@ Cruisers:
         *6 canons
             (Max damage = 200)
         *1400 health
-        * 1X Missile defense system: SeaRAM
+        * 2X Missile defense system: SeaRAM
             (Submarine missiles only)
     Disadvantages:
         *High hit chance
@@ -48,11 +48,13 @@ Nuclear Submarine:
             (Dealing high AP & HP damage) (Max damage = 1000) (Until round 7 you can not launch Nuclear Missiles) (Takes 2 round to reach his target)
         *Can fire Jericho Missiles 3 times
             (Dealing high HP damage) (Max damage = 500) (Only every 2 rounds)
-        *Can fire Torpedoes 8 times
+        *Can fire Torpedoes 6 times
             (Dealing AP bullet affect)
         *800 armor
         *1X %100 hit chance using NR-50 radar systems
+        *Deep dive
+            (Can not avoid Torpedoes)
     Disadvantages:
-        *500 health
+        *400 health
         *No additional canons
 ------------------------------------------------------------------------------------
