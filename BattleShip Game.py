@@ -47,21 +47,24 @@ class BattleShips:
             self.armor=100
             self.numberOfCanons=4
             self.numberOfTorpedoes=6
+            self.selfDefense=1
         elif self.type=="Cruiser":
             self.hp=1400
             self.armor=200
             self.numberOfCanons=6
+            self.selfDefense=1
         elif self.type=="Armored":
             self.hp=1600
             self.armor=400
             self.numberOfCanons=8
-
+            self.selfDefense=2
         elif self.type=="Submarine":
             self.hp=500
             self.armor=800
             self.numberOfNuces=1
             self.numberOfJericho=3
             self.numberOfTorpedoes=6
+            self.criticHit=1
         pass
 
 
@@ -197,6 +200,14 @@ class BattleShips:
                             print(f"Firing Nuclear Missiles Captain {self.name}.\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
                             print("------------------------------------------------------------------------------------")
                             self.numberOfNuces-=1
+                            chance=random.randrange(1,21)
+                            if chance==10:
+                                hp=0
+                                armor=0
+                                self.hp-=50
+                                self.armor-=150
+                                print(f"Fuck! Captain our Nuclear Missile explode unexpectedly\n{self.type}: {-50}hp {-150} armor")
+
                             i+=1
                             return (int(hp), int(armor),"Nuce")
                         elif nuces.strip().lower()=="no":
@@ -307,40 +318,98 @@ class BattleShips:
 
     def ShipDefense(self,hp,armor ,round , bullet):
         if self.type == "Destroyer":
-            if bullet=="AP" or bullet=="HP" or bullet=="TP":
-                hp=hp * (random.randrange(90, 101) / 100)
+            if bullet=="AP" or bullet=="HP":
+                chance=random.randrange(1,11)
+                if chance==1 or chance==2 or chance==3 or chance==4:
+                    print("MISS SIR")
+                else:
+                    print("DIRECT HIT SIR")
+                    self.hp -= hp
+                    self.armor -= armor
+            elif bullet=="TP":
+                hp = hp * (random.randrange(70, 101) / 100)
+                armor = armor * (random.randrange(71, 101) / 100)
                 self.hp -= hp
-                self.armor -= armor * (random.randrange(40, 61) / 100)
+                self.armor -= armor
             elif bullet=="Nuce":
                 self.hp -= hp
                 self.armor = 0
             elif bullet=="JR":
-                hp=hp * (random.randrange(70, 81) / 100)
+                hp=hp * (random.randrange(50, 61) / 100)
                 self.hp -= hp
-            print(f"-{int(hp)}hp\n-{int(armor)} armor")
+            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
 
         elif self.type == "Cruiser":
-            if bullet == "AP" or bullet == "HP" or bullet == "TP":
-                hp=hp * (random.randrange(70, 91) / 100)
-                armor=armor * (random.randrange(50, 71) / 100)
-                self.hp -= hp
-                self.armor -= armor
-            elif bullet == "Nuce":
-                self.hp -= hp
+            if self.armor > 0:
+                if bullet == "AP" or bullet == "HP":
+                    chance = random.randrange(1, 11)
+                    if chance == 1 or chance == 2 or chance==3:
+                        print("MISS SIR")
+                    else:
+                        print("DIRECT HIT SIR")
+                        self.hp -= hp
+                        self.armor -= armor
+                elif bullet=="TP":
+                    hp = hp * (random.randrange(80, 91) / 100)
+                    armor = armor * (random.randrange(80, 91) / 100)
+                    self.hp -= hp
+                    self.armor -= armor
+                elif bullet == "Nuce":
+                    self.hp -= hp
+                    self.armor = 0
+                elif bullet=="JR":
+                    hp=hp * (random.randrange(60, 71) / 100)
+                    self.hp -= hp
+            else:
                 self.armor = 0
-            elif bullet=="JR":
-                hp=hp * (random.randrange(80, 91) / 100)
-                self.hp -= hp
-            print(f"-{int(hp)}hp\n-{int(armor)} armor")
+                if bullet == "AP" or bullet == "HP":
+                    chance = random.randrange(1, 11)
+                    if chance == 1 or chance == 2:
+                        print("MISS SIR")
+                    else:
+                        print("DIRECT HIT SIR")
+                        self.hp -= hp
+                else:
+                    self.hp -= hp
+
+            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
 
         elif self.type == "Armored":
-            if self.armor <= 0:
-                self.hp -= hp
-                self.armor=0
+            if self.armor>0:
+                if bullet == "AP" or bullet == "HP":
+                    chance = random.randrange(1, 11)
+                    if chance == 1 or chance == 2:
+                        print("MISS SIR")
+                    else:
+                        print("DIRECT HIT SIR")
+                        self.hp -= hp
+                        self.armor -= armor
+                elif bullet == "TP":
+                    hp = hp * (random.randrange(60, 61) / 100)
+                    armor = armor * (random.randrange(60, 61) / 100)
+                    self.hp -= hp
+                    self.armor -= armor
+                elif bullet == "Nuce":
+                    self.hp -= hp
+                    self.armor = 0
+                elif bullet == "JR":
+                    hp = hp * (random.randrange(80, 101) / 100)
+                    self.hp -= hp
             else:
-                self.hp -= hp * (random.randrange(50, 81) / 100)
-                self.armor -= armor * (random.randrange(60, 81) / 100)
-            print(f"-{int(hp)}hp\n-{int(armor)} armor")
+                self.armor=0
+                if bullet == "AP" or bullet == "HP":
+                    chance = random.randrange(1, 11)
+                    if chance == 1 or chance == 2:
+                        print("MISS SIR")
+                    else:
+                        print("DIRECT HIT SIR")
+                        self.hp -= hp
+                        self.armor -= armor
+                else:
+                    self.hp -= hp
+
+
+            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
 
         elif self.type == "Submarine":
             if bullet == "AP" or bullet == "HP" or bullet == "TP":
@@ -363,7 +432,10 @@ Ship1 = BattleShips(typeList[0], nameList[0])
 Ship2 = BattleShips(typeList[1], nameList[1])
 ROUND=1
 while not Ship1.hp<=0 or not Ship2.hp<=0 and not ROUND<=0:
-    if Ship1.hp<=0:
+    print(f"~ROUND{ROUND}~")
+    hp1 , armor1 , AMMUNATION=Ship1.ShipFire(ROUND)
+    Ship2.ShipDefense(hp1 , armor1,ROUND , AMMUNATION)
+    if Ship1.hp <= 0:
         print(f"Captain {Ship2.name} is the ruler of the seas\nTHE END")
         ROUND = -1
         break
@@ -371,10 +443,16 @@ while not Ship1.hp<=0 or not Ship2.hp<=0 and not ROUND<=0:
         print(f"Captain {Ship1.name} is the ruler of the seas\nTHE END")
         ROUND=-1
         break
-    print(f"~ROUND{ROUND}~")
-    hp1 , armor1 , AMMUNATION=Ship1.ShipFire(ROUND)
-    Ship2.ShipDefense(hp1 , armor1,ROUND , AMMUNATION)
     hp2, armor2 , AMMUNATION2=Ship2.ShipFire(ROUND)
     Ship1.ShipDefense(hp2,armor2,ROUND , AMMUNATION2)
+    if Ship1.hp <= 0:
+        print(f"Captain {Ship2.name} is the ruler of the seas\nTHE END")
+        ROUND = -1
+        break
+    elif Ship2.hp<=0:
+        print(f"Captain {Ship1.name} is the ruler of the seas\nTHE END")
+        ROUND=-1
+        break
     ROUND += 1
+
 
