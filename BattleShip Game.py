@@ -678,7 +678,7 @@ class BattleShips(AirStrike):
                             while (loop == 0):
                                 Defense = str(input(f"Want to dive {-820}ft\n+{hp}hp +{armor} armor\n[YES/NO]"))
                                 if Defense.strip().lower()=="yes":
-                                    print("Ballas tanks are filled with water ready to dive....")
+                                    print("Ballast tanks are filled with water ready to dive....")
                                     self.selfDefense-=1
                                     loop+=1
                                 elif Defense.strip().lower()=="no":
@@ -714,7 +714,7 @@ class BattleShips(AirStrike):
                             while (loop == 0):
                                 Defense = str(input(f"Want to dive {-820}ft\n+{hp}hp +{armor} armor\n[YES/NO]"))
                                 if Defense.strip().lower()=="yes":
-                                    print("Ballas tanks are filled with water ready to dive....")
+                                    print("Ballast tanks are filled with water ready to dive....")
                                     self.selfDefense-=1
                                     loop+=1
                                 elif Defense.strip().lower()=="no":
