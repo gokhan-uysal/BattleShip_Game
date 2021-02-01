@@ -2,19 +2,28 @@
 Destroyer:
     Advantages:
         *10 seconds reload time
-        *Can fire Torpedoes 6 times (Dealing AP bullet affect)
+        *Can fire Torpedoes 6 times
+            (Dealing AP bullet affect)
+        * 1X Self defense system: Phalanx CIWS
+            (HP & AP bullet only)
     Disadvantages:
         *1200 health
         *100 armor
         *4 canons (Max damage = 100)
-        *1 type of bullet HP (High-Spreader shell)
+        *1 type of bullet HP
+            (High-Spreader shell)
         *Thin armor
+
 
 Cruisers:
     Advantages:
-        *2 type of bullet HP & AP (High-Spreader and Armor Piercing shells)
-        *6 canons (Max damage = 200)
+        *2 type of bullet HP & AP
+            (High-Spreader and Armor Piercing shells)
+        *6 canons
+            (Max damage = 200)
         *1400 health
+        * 1X Missile defense system: SeaRAM
+            (Submarine missiles only)
     Disadvantages:
         *200 armor
         *30 seconds reload time
@@ -24,16 +33,23 @@ Armored:
         *400 armor
         *1600 health
         *8 canons
-        *2 type of bullet HP & AP (High-Spreader and Armor Piercing shells)
+        *2 type of bullet HP & AP
+            (High-Spreader and Armor Piercing shells)
+        * 2X Missile defense system: SeaRAM
+            (Submarine missiles only)
     Disadvantages:
         *60 seconds reload time
 
 Russian's Nuclear Submarine:
     Advantages:
-        *Can fire Nuclear Missiles 3 times (Dealing high damage AP & HP) (Max damage = 500)
+        *Can fire Nuclear Missiles 1 times:
+            (Dealing high AP & HP damage) (Max damage = 700) (Until round 9 you can not launch Nuclear Missiles) (Takes 2 round to reach his target)
+        *Can fire Jericho Missiles 3 times (Dealing high AP & HP damage) (Max damage = 500) (Only every 2 rounds)
+        *Can fire Torpedoes 6 times
+            (Dealing AP bullet affect)
         *800 armor
+        *1X %100 hit chance using NR-50 radar systems
     Disadvantages:
-        *300 health
-        *No additional missiles or canons
-        *90 seconds reload time
+        *200 health
+        *No additional canons
 ------------------------------------------------------------------------------------
