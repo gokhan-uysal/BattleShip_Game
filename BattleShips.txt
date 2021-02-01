@@ -43,13 +43,13 @@ Armored:
 Russian's Nuclear Submarine:
     Advantages:
         *Can fire Nuclear Missiles 1 times:
-            (Dealing high AP & HP damage) (Max damage = 700) (Until round 9 you can not launch Nuclear Missiles) (Takes 2 round to reach his target)
-        *Can fire Jericho Missiles 3 times (Dealing high AP & HP damage) (Max damage = 500) (Only every 2 rounds)
+            (Dealing high AP & HP damage) (Max damage = 1000) (Until round 9 you can not launch Nuclear Missiles) (Takes 2 round to reach his target)
+        *Can fire Jericho Missiles 3 times (Dealing high HP damage) (Max damage = 500) (Only every 2 rounds)
         *Can fire Torpedoes 6 times
             (Dealing AP bullet affect)
         *800 armor
         *1X %100 hit chance using NR-50 radar systems
     Disadvantages:
-        *200 health
+        *500 health
         *No additional canons
 ------------------------------------------------------------------------------------

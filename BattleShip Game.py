@@ -45,24 +45,20 @@ class BattleShips:
         if self.type=="Destroyer":
             self.hp=1200
             self.armor=100
-            self.reloadTime=10
             self.numberOfCanons=4
             self.numberOfTorpedoes=6
         elif self.type=="Cruiser":
             self.hp=1400
             self.armor=200
-            self.reloadTime=30
             self.numberOfCanons=6
         elif self.type=="Armored":
             self.hp=1600
             self.armor=400
-            self.reloadTime=60
             self.numberOfCanons=8
 
         elif self.type=="Submarine":
-            self.hp=300
+            self.hp=500
             self.armor=800
-            self.reloadTime=90
             self.numberOfNuces=1
             self.numberOfJericho=3
             self.numberOfTorpedoes=6
@@ -84,11 +80,12 @@ class BattleShips:
                         canon -= 1
                         print("Oh! Captain we lost 1 canon")
 
-                    hp = 200 * (random.randrange(70, 101) / 100) * (canon / self.numberOfCanons)
+                    hp = 200  * (canon / self.numberOfCanons)
                     i += 1
                     print(f"We are out of Torpedoes sir!!\nFiring HP shells with {canon} out of {self.numberOfCanons} canons Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
                     print("------------------------------------------------------------------------------------")
-                    return (int(hp) ,0 , "Torpedoes")
+                    return (int(hp) ,0 , "TP")
+
                 else:
                     bulletType = str(input(f"Select the bullet type {self.name}\nTP(Dealing Armor Damage ,HP(High-Spreader)"))
                     if bulletType.upper().strip()=="HP":
@@ -102,14 +99,15 @@ class BattleShips:
                             canon -= 1
                             print("Oh! Captain we lost 1 canon")
 
-                        hp = 200 * (random.randrange(70, 101) / 100) * (canon / self.numberOfCanons)
+                        hp = 200  * (canon / self.numberOfCanons)
                         i += 1
                         print(f"Firing HP shells with {canon} out of {self.numberOfCanons} canons Captain {name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
                         print("------------------------------------------------------------------------------------")
                         return (int(hp) ,0 , "TP")
+
                     elif bulletType.upper().strip()=="TP":
                         self.numberOfTorpedoes-=1
-                        hit = 400 * (random.randrange(65, 91)/100)
+                        hit = 400
                         percent=random.randrange(0,45)/100
                         hp , armor = hit*percent, hit*(1-percent)
                         i+=1
@@ -132,7 +130,7 @@ class BattleShips:
                     print("Oh! Captain we lost 1 canon")
 
                 if bulletType.upper() =="AP":
-                    hit=200*(random.randrange(80,101)/100)*(canon/self.numberOfCanons)
+                    hit=200 * (canon/self.numberOfCanons)
                     percent=random.randrange(1,101)/100
                     hp , armor =hit*percent , hit*(1-percent)
                     i+=1
@@ -141,7 +139,7 @@ class BattleShips:
                     return (int(hp) , int(armor) , "AP")
 
                 elif bulletType.upper() =="HP":
-                    hp = 200 * (random.randrange(70, 101) / 100)*(canon/self.numberOfCanons)
+                    hp = 200 * (canon/self.numberOfCanons)
                     i+=1
                     print(f"Firing HP shells with {canon} out of {self.numberOfCanons} canons Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
                     print("------------------------------------------------------------------------------------")
@@ -165,7 +163,7 @@ class BattleShips:
                     print("Captain we lost 1 canon")
 
                 if bulletType.upper() == "AP":
-                    hit = 400 * (random.randrange(80, 101) / 100) * (canon / self.numberOfCanons)
+                    hit = 400  * (canon / self.numberOfCanons)
                     percent = random.randrange(1, 101) / 100
                     hp, armor = hit * percent, hit * (1 - percent)
                     i += 1
@@ -174,47 +172,155 @@ class BattleShips:
                     return (int(hp) , int(armor) , "AP")
 
                 elif bulletType.upper() == "HP":
-                    hp = 400 * (random.randrange(70, 101) / 100) * (canon / self.numberOfCanons)
+                    hp = 400 * (canon / self.numberOfCanons)
                     i += 1
                     print(f"Firing HP shells with {canon} out of {self.numberOfCanons} canons Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
                     print("------------------------------------------------------------------------------------")
                     return (int(hp) , 0 , "HP")
 
         elif self.type=="Submarine":
-            if self.numberOfNuces<=0:
-                print(f"We are out of Nuclear Missiles sir!!\nTime to defend")
-                print("------------------------------------------------------------------------------------")
-                return (0, 0, "None")
+            if ROUND>=9:
+                i=0
+                while (i==0):
+                    if self.numberOfNuces<=0:
+                        print(f"We are out of Nuclear Missiles sir!!")
+                        print("------------------------------------------------------------------------------------")
+                        i+=1
+                        continue
+
+                    else:
+                        nuces = str(input("Sir do you want to fire Nuclear Missile [yes/no]....."))
+                        if nuces.strip().lower()=="yes":
+                            hit = 1000
+                            percent=0.5
+                            hp , armor =hit*percent , hit*percent
+                            print(f"Firing Nuclear Missiles Captain {self.name}.\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
+                            print("------------------------------------------------------------------------------------")
+                            self.numberOfNuces-=1
+                            i+=1
+                            return (int(hp), int(armor),"Nuce")
+                        elif nuces.strip().lower()=="no":
+                            bulletType = str(input(f"Select the bullet type {self.name}:\nTP(Torpedoes) ,JR(Jericho Missile)"))
+                            if bulletType.strip().upper() == "TP":
+                                self.numberOfTorpedoes -= 1
+                                hit = 400
+                                percent = random.randrange(0, 45) / 100
+                                hp, armor = hit * percent, hit * (1 - percent)
+                                i += 1
+                                print(
+                                    f"Firing 1 Torpedoes out of {self.numberOfTorpedoes} Captain {self.name}\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
+                                print(
+                                    "------------------------------------------------------------------------------------")
+                                return (int(hp), int(armor), "TP")
+                            elif bulletType.strip().upper() == "JR":
+                                self.numberOfJericho -= 1
+                                hit = 500
+                                hp = hit
+                                i += 1
+                                print(
+                                    f"Firing Jericho Missiles out of {self.numberOfJericho} Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
+                                print("------------------------------------------------------------------------------------")
+                                return (int(hp), 0 , "JR")
+                            else:
+                                print("Waiting for your order....")
+
+                        if self.numberOfJericho<=0 and self.numberOfTorpedoes>0:
+                            print("Sir we are out of Jericho Missiles")
+                            self.numberOfTorpedoes -= 1
+                            hit = 400
+                            percent = random.randrange(0, 45) / 100
+                            hp, armor = hit * percent, hit * (1 - percent)
+                            i += 1
+                            print(
+                                f"Firing 1 Torpedoes out of {self.numberOfTorpedoes} Captain {self.name}\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
+                            print(
+                                "------------------------------------------------------------------------------------")
+                            return (int(hp), int(armor), "TP")
+                        elif self.numberOfTorpedoes<=0 and self.numberOfJericho>0:
+                            print("Sir we are out of Torpedoes")
+                            self.numberOfJericho -= 1
+                            hit = 500
+                            hp = hit
+                            i += 1
+                            print(
+                                f"Firing Jericho Missiles Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
+                            print(
+                                "------------------------------------------------------------------------------------")
+                            return (int(hp), 0, "JR")
+                        elif self.numberOfNuces<=0 and self.numberOfJericho<=0 and self.numberOfTorpedoes<=0:
+                            print(f"It was a pleasure to serve you sir {self.name}")
+                        else:
+                            print("Waiting for your order....")
             else:
-                hit = 700 * (random.randrange(80, 101) / 100)
-                percent=0.5
-                hp , armor =hit*percent , hit*percent
-                print(f"Firing Nuclear Missiles Captain {self.name}.\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
-                print("------------------------------------------------------------------------------------")
-                self.numberOfNuces-=1
-                return (int(hp), int(armor),"Nuce")
+                if self.numberOfJericho <= 0 and self.numberOfTorpedoes > 0:
+                    print("Sir we are out of Jericho Missiles")
+                    self.numberOfTorpedoes -= 1
+                    hit = 400
+                    percent = random.randrange(0, 45) / 100
+                    hp, armor = hit * percent, hit * (1 - percent)
+                    print(
+                        f"Firing 1 Torpedoes out of {self.numberOfTorpedoes} Captain {self.name}\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
+                    print(
+                        "------------------------------------------------------------------------------------")
+                    return (int(hp), int(armor), "TP")
+
+                elif self.numberOfTorpedoes <= 0 and self.numberOfJericho > 0:
+                    print("Sir we are out of Torpedoes")
+                    self.numberOfJericho -= 1
+                    hit = 500
+                    hp = hit
+                    print(
+                        f"Firing Jericho Missiles out of {self.numberOfJericho} Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
+                    print(
+                        "------------------------------------------------------------------------------------")
+                    return (int(hp), 0, "JR")
+                elif self.numberOfNuces<=0 and self.numberOfJericho<=0:
+                    print(f"Sir we are out of everything but one chance in ROUND 9 {self.name}")
+                    return (0 , 0 , "None")
+                i = 0
+                while (i == 0):
+                    bulletType = str(input(f"Select the bullet type {self.name}:\nTP(Torpedoes) ,JR(Jericho Missile)"))
+                    if bulletType.strip().upper() == "TP":
+                        self.numberOfTorpedoes -= 1
+                        hit = 400
+                        percent = random.randrange(0, 45) / 100
+                        hp, armor = hit * percent, hit * (1 - percent)
+                        i += 1
+                        print(
+                            f"Firing 1 Torpedoes out of {self.numberOfTorpedoes} Captain {self.name}\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
+                        print(
+                            "------------------------------------------------------------------------------------")
+                        return (int(hp), int(armor), "TP")
+                    elif bulletType.strip().upper() == "JR":
+                        self.numberOfJericho -= 1
+                        hit = 500
+                        hp = hit
+                        i += 1
+                        print(f"Firing Jericho Missiles out of {self.numberOfJericho} Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
+                        print("------------------------------------------------------------------------------------")
+                        return (int(hp), 0, "JR")
+                    else:
+                        print("Waiting for your order....")
+
         else:
            return False
 
     def ShipDefense(self,hp,armor ,round , bullet):
         if self.type == "Destroyer":
-            print(f"DIRECT HIT SIR")
-            if bullet=="AP" or bullet=="HP" or bullet=="Torpedoes":
+            if bullet=="AP" or bullet=="HP" or bullet=="TP":
                 hp=hp * (random.randrange(90, 101) / 100)
                 self.hp -= hp
                 self.armor -= armor * (random.randrange(40, 61) / 100)
             elif bullet=="Nuce":
                 self.hp -= hp
                 self.armor = 0
-            elif bullet=="Jericho":
-                print(f"DIRECT HIT")
+            elif bullet=="JR":
                 hp=hp * (random.randrange(70, 81) / 100)
                 self.hp -= hp
             print(f"-{int(hp)}hp\n-{int(armor)} armor")
 
         elif self.type == "Cruiser":
-            if bullet == "AP" or bullet == "HP" or bullet == "Torpedoes":
-                print(f"DIRECT HIT")
+            if bullet == "AP" or bullet == "HP" or bullet == "TP":
                 hp=hp * (random.randrange(70, 91) / 100)
                 armor=armor * (random.randrange(50, 71) / 100)
                 self.hp -= hp
@@ -222,8 +328,7 @@ class BattleShips:
             elif bullet == "Nuce":
                 self.hp -= hp
                 self.armor = 0
-            elif bullet=="Jericho":
-                print(f"DIRECT HIT")
+            elif bullet=="JR":
                 hp=hp * (random.randrange(80, 91) / 100)
                 self.hp -= hp
             print(f"-{int(hp)}hp\n-{int(armor)} armor")
@@ -238,8 +343,7 @@ class BattleShips:
             print(f"-{int(hp)}hp\n-{int(armor)} armor")
 
         elif self.type == "Submarine":
-            if bullet == "AP" or bullet == "HP" or bullet == "Torpedoes":
-                print(f"DIRECT HIT")
+            if bullet == "AP" or bullet == "HP" or bullet == "TP":
                 if self.armor <= 0:
                     self.hp -= hp
                     self.armor=0
