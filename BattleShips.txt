@@ -2,7 +2,7 @@
 Destroyer:
     Advantages:
         *10 seconds reload time
-        *Can fire torpedoes 4 times (Dealing AP bullet affect)
+        *Can fire Torpedoes 6 times (Dealing AP bullet affect)
     Disadvantages:
         *1200 health
         *100 armor
@@ -27,4 +27,13 @@ Armored:
         *2 type of bullet HP & AP (High-Spreader and Armor Piercing shells)
     Disadvantages:
         *60 seconds reload time
+
+Russian's Nuclear Submarine:
+    Advantages:
+        *Can fire Nuclear Missiles 3 times (Dealing high damage AP & HP) (Max damage = 500)
+        *800 armor
+    Disadvantages:
+        *300 health
+        *No additional missiles or canons
+        *90 seconds reload time
 ------------------------------------------------------------------------------------
