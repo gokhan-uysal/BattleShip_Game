@@ -100,7 +100,7 @@ class BattleShips(AirStrike):
                     print(
                         f"We are out of Torpedoes sir!!\nFiring HP shells with {canon} out of {self.numberOfCanons} canons Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
                     print("------------------------------------------------------------------------------------")
-                    return (int(hp), 0, "TP")
+                    return (int(hp), 0, "HP")
 
                 else:
                     bulletType = str(input(f"Select the bullet type {self.name}\nTP(Torpedoes) ,HP(High-Spreader)"))
@@ -120,7 +120,7 @@ class BattleShips(AirStrike):
                         print(
                             f"Firing HP shells with {canon} out of {self.numberOfCanons} canons Captain {name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
                         print("------------------------------------------------------------------------------------")
-                        return (int(hp), 0, "TP")
+                        return (int(hp), 0, "HP")
 
                     elif bulletType.upper().strip() == "TP":
                         self.numberOfTorpedoes -= 1
@@ -148,7 +148,7 @@ class BattleShips(AirStrike):
                     print("Oh! Captain we lost 1 canon")
 
                 if bulletType.upper() == "AP":
-                    hit = 200 * (canon / self.numberOfCanons)
+                    hit = 250 * (canon / self.numberOfCanons)
                     percent = random.randrange(1, 41) / 100
                     hp, armor = hit * percent, hit * (1 - percent)
                     i += 1
@@ -171,11 +171,11 @@ class BattleShips(AirStrike):
                 bulletType = str(input(f"Select the bullet type {self.name}:\nAP(Armor-Piercing) ,HP(High-Spreader)"))
                 # CANON BREAK
                 canon = self.numberOfCanons
-                Chance = random.randrange(0, 26)
+                Chance = random.randrange(0, 21)
                 if Chance == 10:
                     canon -= self.numberOfCanons
                     print("Shit! Captain we lost all canons")
-                elif Chance == 5 or Chance == 10 or Chance == 15 or Chance == 20 or Chance == 25:
+                elif Chance == 5 or Chance == 10 or Chance == 15 or Chance == 20 or Chance == 19:
                     canon -= 2
                     print("Oh! Captain we lost 2 canon")
                 elif Chance == 2 or Chance == 4 or Chance == 6 or Chance == 8 or Chance == 10 or Chance == 12:
@@ -183,7 +183,7 @@ class BattleShips(AirStrike):
                     print("Captain we lost 1 canon")
 
                 if bulletType.upper() == "AP":
-                    hit = 400 * (canon / self.numberOfCanons)
+                    hit = 300 * (canon / self.numberOfCanons)
                     percent = random.randrange(1, 41) / 100
                     hp, armor = hit * percent, hit * (1 - percent)
                     i += 1
@@ -193,7 +193,7 @@ class BattleShips(AirStrike):
                     return (int(hp), int(armor), "AP")
 
                 elif bulletType.upper() == "HP":
-                    hp = 400 * (canon / self.numberOfCanons)
+                    hp = 250 * (canon / self.numberOfCanons)
                     i += 1
                     print(
                         f"Firing HP shells with {canon} out of {self.numberOfCanons} canons Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
@@ -206,7 +206,6 @@ class BattleShips(AirStrike):
                 while (i == 0):
                     if self.numberOfNuces <= 0:
                         print(f"We are out of Nuclear Missiles sir!!")
-                        print("------------------------------------------------------------------------------------")
                         i += 1
                         continue
 
@@ -229,6 +228,8 @@ class BattleShips(AirStrike):
                                 self.armor -= 150
                                 print(
                                     f"Fuck! Captain our Nuclear Missile explode unexpectedly\n{self.type}: {-50}hp {-150} armor")
+                                print(
+                                    "------------------------------------------------------------------------------------")
 
                             i += 1
                             return (int(hp), int(armor), "Nuce")
@@ -284,6 +285,8 @@ class BattleShips(AirStrike):
                             return (int(hp), 0, "JR")
                         elif self.numberOfNuces <= 0 and self.numberOfJericho <= 0 and self.numberOfTorpedoes <= 0:
                             print(f"It was a pleasure to serve you sir {self.name}")
+                            print(
+                                "------------------------------------------------------------------------------------")
                         else:
                             print("Waiting for your order....")
             else:
@@ -311,6 +314,7 @@ class BattleShips(AirStrike):
                     return (int(hp), 0, "JR")
                 elif self.numberOfNuces <= 0 and self.numberOfJericho <= 0:
                     print(f"Sir we are out of everything but one chance in ROUND 9 {self.name}")
+                    print("------------------------------------------------------------------------------------")
                     return (0, 0, "None")
                 i = 0
                 while (i == 0):
@@ -343,79 +347,206 @@ class BattleShips(AirStrike):
 
     def ShipDefense(self, hp, armor, round, bullet):
         if self.type == "Destroyer":
-            if bullet == "AP" or bullet == "HP":
-                chance = random.randrange(1, 11)
-                if chance == 1 or chance == 2 or chance == 3 or chance == 4:
-                    print("MISS SIR")
-                else:
-                    print("DIRECT HIT SIR")
-                    if self.selfDefense > 0:
-                        loop = 0
-                        while (loop == 0):
-                            Defense = str(input(f"Want to use Phalanx CIWS\n+{hp}hp +{armor} armor\n[YES/NO]"))
-                            if Defense.lower().strip() == "yes":
-                                print("BOOOM Thank God!")
-                                self.selfDefense -= 1
-                                loop += 1
-                            elif Defense.lower().strip() == "no":
-                                self.hp -= hp
-                                self.armor -= armor
-                                loop += 1
-                                print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-                            else:
-                                print("Waiting for your order....")
+            if hp == 0:
+                print("MISS SIR")
+            else:
+                if bullet == "AP" or bullet == "HP":
+                    chance = random.randrange(1, 11)
+                    if chance == 1 or chance == 2 or chance == 3 or chance == 4:
+                        print("MISS SIR")
                     else:
-                        self.hp -= hp
-                        self.armor -= armor
-                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                        print("DIRECT HIT SIR")
+                        if self.selfDefense > 0:
+                            loop = 0
+                            while (loop == 0):
+                                Defense = str(input(f"Want to use Phalanx CIWS\n+{hp}hp +{armor} armor\n[YES/NO]"))
+                                if Defense.lower().strip() == "yes":
+                                    print("BOOOM Thank God!")
+                                    self.selfDefense -= 1
+                                    loop += 1
+                                elif Defense.lower().strip() == "no":
+                                    self.hp -= hp
+                                    self.armor -= armor
+                                    loop += 1
+                                    print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                                else:
+                                    print("Waiting for your order....")
+                        else:
+                            self.hp -= hp
+                            self.armor -= armor
+                            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
 
-            elif bullet == "TP":
-                print("DIRECT HIT SIR")
-                hp = hp * (random.randrange(70, 101) / 100)
-                armor = armor * (random.randrange(71, 101) / 100)
-                self.hp -= hp
-                self.armor -= armor
-                print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-            elif bullet == "Nuce":
-                if hp==0:
-                    print("MISS SIR")
-                else:
+                elif bullet == "TP":
+                    print("DIRECT HIT SIR")
+                    self.hp -= hp
+                    self.armor -= armor
+                    print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                elif bullet == "Nuce":
                     print("DIRECT HIT SIR")
                     self.hp -= hp
                     self.armor = 0
                     print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-            elif bullet == "JR":
-                print("DIRECT HIT SIR")
-                hp = hp * (random.randrange(50, 61) / 100)
-                self.hp -= hp
-                self.armor -= armor
-                print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-
-
+                elif bullet == "JR":
+                    print("DIRECT HIT SIR")
+                    hp = hp * (random.randrange(50, 61) / 100)
+                    self.hp -= hp
+                    self.armor -= armor
+                    print((f"-{int(hp)}hp\n-{int(armor)} armor"))
 
         elif self.type == "Cruiser":
-            if self.armor > 0:
-                if bullet == "AP" or bullet == "HP":
-                    chance = random.randrange(1, 11)
-                    if chance == 1 or chance == 2 or chance == 3:
-                        print("MISS SIR")
-                    else:
+            if hp == 0:
+                print("MISS SIR")
+            else:
+                if self.armor > 0:
+                    if bullet == "AP" or bullet == "HP":
+                        chance = random.randrange(1, 11)
+                        if chance == 1 or chance == 2 or chance == 3:
+                            print("MISS SIR")
+                        else:
+                            print("DIRECT HIT SIR")
+                            self.hp -= hp
+                            self.armor -= armor
+                            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+
+                    elif bullet == "TP":
                         print("DIRECT HIT SIR")
                         self.hp -= hp
                         self.armor -= armor
                         print((f"-{int(hp)}hp\n-{int(armor)} armor"))
 
-                elif bullet == "TP":
-                    print("DIRECT HIT SIR")
-                    hp = hp * (random.randrange(80, 91) / 100)
-                    armor = armor * (random.randrange(80, 91) / 100)
-                    self.hp -= hp
-                    self.armor -= armor
-                    print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-                elif bullet == "Nuce":
-                    if hp==0:
-                        print("MISS SIR")
-                    else:
+                    elif bullet == "Nuce":
+                        if hp==0:
+                            print("MISS SIR")
+                        else:
+                            if self.selfDefense > 0 and hp>0:
+                                loop = 0
+                                while (loop == 0):
+                                    Defense = str(input(f"Want to use SeaRAM\n+{hp}hp +{armor} armor\n[YES/NO]"))
+                                    if Defense.lower().strip() == "yes":
+                                        print("BOOOM Thank God!")
+                                        self.selfDefense -= 1
+                                        loop += 1
+                                    elif Defense.lower().strip() == "no":
+                                        print("DIRECT HIT SIR")
+                                        self.hp -= hp
+                                        self.armor = 0
+                                        loop += 1
+                                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                                    else:
+                                        print("Waiting for your order....")
+                            else:
+                                print("DIRECT HIT SIR")
+                                self.hp -= hp
+                                self.armor = 0
+                                print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+
+                    elif bullet == "JR":
+                        if self.selfDefense > 0 and hp>0:
+                            loop = 0
+                            while (loop == 0):
+                                hp = hp * (random.randrange(60, 71) / 100)
+                                Defense = str(input(f"Want to use SeaRAM\n+{hp}hp +{armor} armor\n[YES/NO]"))
+                                if Defense.lower().strip() == "yes":
+                                    print("BOOOM Thank God!")
+                                    self.selfDefense -= 1
+                                    loop += 1
+                                elif Defense.lower().strip() == "no":
+                                    print("DIRECT HIT SIR")
+                                    self.hp -= hp
+                                    loop += 1
+                                    print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                                else:
+                                    print("Waiting for your order....")
+                        else:
+                            print("DIRECT HIT SIR")
+                            hp = hp * (random.randrange(60, 71) / 100)
+                            self.hp -= hp
+                            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                else:
+                    self.armor = 0
+                    if bullet == "AP" or bullet == "HP":
+                        chance = random.randrange(1, 11)
+                        if chance == 1 or chance == 2 or chance == 3:
+                            print("MISS SIR")
+                        else:
+                            print("DIRECT HIT SIR")
+                            self.hp -= (hp+armor)
+                            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+
+                    elif bullet == "TP":
+                        print("DIRECT HIT SIR")
+                        self.hp -= (hp+armor)
+                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+
+
+                    elif bullet == "Nuce":
+                        if self.selfDefense > 0 and hp>0:
+                            loop = 0
+                            while (loop == 0):
+                                Defense = str(input(f"Want to use SeaRAM\n+{hp}hp +{armor} armor\n[YES/NO]"))
+                                if Defense.lower().strip() == "yes":
+                                    print("BOOOM Thank God!")
+                                    self.selfDefense -= 1
+                                    loop += 1
+                                elif Defense.lower().strip() == "no":
+                                    print("DIRECT HIT SIR")
+                                    self.hp -= hp
+                                    loop += 1
+                                    print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                                else:
+                                    print("Waiting for your order....")
+                        else:
+                            print("DIRECT HIT SIR")
+                            self.hp -= hp
+                            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+
+                    elif bullet == "JR":
+                        if self.selfDefense > 0 and hp>0:
+                            loop = 0
+                            while (loop == 0):
+                                Defense = str(input(f"Want to use SeaRAM\n+{hp}hp +{armor} armor\n[YES/NO]"))
+                                if Defense.lower().strip() == "yes":
+                                    print("BOOOM Thank God!")
+                                    self.selfDefense -= 1
+                                    loop += 1
+                                elif Defense.lower().strip() == "no":
+                                    print("DIRECT HIT SIR")
+                                    hp = hp * (random.randrange(60, 71) / 100)
+                                    self.hp -= hp
+                                    loop += 1
+                                    print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                                else:
+                                    print("Waiting for your order....")
+                        else:
+                            print("DIRECT HIT SIR")
+                            hp = hp * (random.randrange(60, 71) / 100)
+                            self.hp -= hp
+                            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+
+        elif self.type == "Armored":
+            if hp == 0:
+                print("MISS SIR")
+            else:
+                if self.armor > 0:
+                    if bullet == "AP" or bullet == "HP":
+                        chance = random.randrange(1, 11)
+                        if chance == 1 or chance == 2:
+                            print("MISS SIR")
+                        else:
+                            print("DIRECT HIT SIR")
+                            self.hp -= hp
+                            self.armor -= armor
+                            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+
+
+                    elif bullet == "TP":
+                        print("DIRECT HIT SIR")
+                        self.hp -= hp
+                        self.armor -= armor
+                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+
+
+                    elif bullet == "Nuce":
                         if self.selfDefense > 0:
                             loop = 0
                             while (loop == 0):
@@ -438,51 +569,49 @@ class BattleShips(AirStrike):
                             self.armor = 0
                             print((f"-{int(hp)}hp\n-{int(armor)} armor"))
 
-                elif bullet == "JR":
-                    if self.selfDefense > 0:
-                        loop = 0
-                        while (loop == 0):
+
+                    elif bullet == "JR":
+                        if self.selfDefense > 0:
+                            loop = 0
+                            while (loop == 0):
+                                Defense = str(input(f"Want to use SeaRAM\n+{hp}hp +{armor} armor\n[YES/NO]"))
+                                if Defense.lower().strip() == "yes":
+                                    print("BOOOM Thank God!")
+                                    self.selfDefense -= 1
+                                    loop += 1
+                                elif Defense.lower().strip() == "no":
+                                    print("DIRECT HIT SIR")
+                                    hp = hp * (random.randrange(60, 71) / 100)
+                                    self.hp -= hp
+                                    loop += 1
+                                    print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                                else:
+                                    print("Waiting for your order....")
+                        else:
+                            print("DIRECT HIT SIR")
                             hp = hp * (random.randrange(60, 71) / 100)
-                            Defense = str(input(f"Want to use SeaRAM\n+{hp}hp +{armor} armor\n[YES/NO]"))
-                            if Defense.lower().strip() == "yes":
-                                print("BOOOM Thank God!")
-                                self.selfDefense -= 1
-                                loop += 1
-                            elif Defense.lower().strip() == "no":
-                                print("DIRECT HIT SIR")
-                                self.hp -= hp
-                                loop += 1
-                                print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-                            else:
-                                print("Waiting for your order....")
-                    else:
-                        print("DIRECT HIT SIR")
-                        hp = hp * (random.randrange(60, 71) / 100)
-                        self.hp -= hp
-                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-            else:
-                self.armor = 0
-                if bullet == "AP" or bullet == "HP":
-                    chance = random.randrange(1, 11)
-                    if chance == 1 or chance == 2 or chance == 3:
-                        print("MISS SIR")
-                    else:
-                        print("DIRECT HIT SIR")
+                            self.hp -= hp
+                            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+
+
+                else:
+                    self.armor = 0
+
+
+                    if bullet == "AP" or bullet == "HP":
+                        chance = random.randrange(1, 11)
+                        if chance == 1 or chance == 2:
+                            print("MISS SIR")
+                        else:
+                            print("DIRECT HIT SIR")
+                            self.hp -= (hp+armor)
+                            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                    elif bullet == "TP":
                         self.hp -= (hp+armor)
                         print((f"-{int(hp)}hp\n-{int(armor)} armor"))
 
-                elif bullet == "TP":
-                    print("DIRECT HIT SIR")
-                    hp = hp * (random.randrange(80, 91) / 100)
-                    armor = armor * (random.randrange(80, 91) / 100)
-                    self.hp -= (hp+armor)
-                    print((f"-{int(hp)}hp\n-{int(armor)} armor"))
 
-
-                elif bullet == "Nuce":
-                    if hp==0:
-                        print("MISS SIR")
-                    else:
+                    elif bullet == "Nuce":
                         if self.selfDefense > 0:
                             loop = 0
                             while (loop == 0):
@@ -501,242 +630,106 @@ class BattleShips(AirStrike):
                         else:
                             print("DIRECT HIT SIR")
                             self.hp -= hp
+                            self.armor = 0
                             print((f"-{int(hp)}hp\n-{int(armor)} armor"))
 
-                elif bullet == "JR":
-                    if self.selfDefense > 0:
-                        loop = 0
-                        while (loop == 0):
-                            Defense = str(input(f"Want to use SeaRAM\n+{hp}hp +{armor} armor\n[YES/NO]"))
-                            if Defense.lower().strip() == "yes":
-                                print("BOOOM Thank God!")
-                                self.selfDefense -= 1
-                                loop += 1
-                            elif Defense.lower().strip() == "no":
-                                print("DIRECT HIT SIR")
-                                hp = hp * (random.randrange(60, 71) / 100)
-                                self.hp -= hp
-                                loop += 1
-                                print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-                            else:
-                                print("Waiting for your order....")
-                    else:
-                        print("DIRECT HIT SIR")
-                        hp = hp * (random.randrange(60, 71) / 100)
-                        self.hp -= hp
-                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
 
-
-
-        elif self.type == "Armored":
-
-            if self.armor > 0:
-                if bullet == "AP" or bullet == "HP":
-                    chance = random.randrange(1, 11)
-                    if chance == 1 or chance == 2:
-                        print("MISS SIR")
-                    else:
-                        print("DIRECT HIT SIR")
-                        self.hp -= hp
-                        self.armor -= armor
-                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-
-
-                elif bullet == "TP":
-                    print("DIRECT HIT SIR")
-                    hp = hp * (random.randrange(60, 61) / 100)
-                    armor = armor * (random.randrange(60, 61) / 100)
-                    self.hp -= hp
-                    self.armor -= armor
-                    print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-
-
-                elif bullet == "Nuce":
-                    if self.selfDefense > 0:
-                        loop = 0
-                        while (loop == 0):
-                            Defense = str(input(f"Want to use SeaRAM\n+{hp}hp +{armor} armor\n[YES/NO]"))
-                            if Defense.lower().strip() == "yes":
-                                print("BOOOM Thank God!")
-                                self.selfDefense -= 1
-                                loop += 1
-                            elif Defense.lower().strip() == "no":
-                                print("DIRECT HIT SIR")
-                                self.hp -= hp
-                                self.armor = 0
-                                loop += 1
-                                print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-                            else:
-                                print("Waiting for your order....")
-                    else:
-                        print("DIRECT HIT SIR")
-                        self.hp -= hp
-                        self.armor = 0
-                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-
-
-                elif bullet == "JR":
-                    if self.selfDefense > 0:
-                        loop = 0
-                        while (loop == 0):
-                            Defense = str(input(f"Want to use SeaRAM\n+{hp}hp +{armor} armor\n[YES/NO]"))
-                            if Defense.lower().strip() == "yes":
-                                print("BOOOM Thank God!")
-                                self.selfDefense -= 1
-                                loop += 1
-                            elif Defense.lower().strip() == "no":
-                                print("DIRECT HIT SIR")
-                                hp = hp * (random.randrange(60, 71) / 100)
-                                self.hp -= hp
-                                loop += 1
-                                print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-                            else:
-                                print("Waiting for your order....")
-                    else:
-                        print("DIRECT HIT SIR")
-                        hp = hp * (random.randrange(60, 71) / 100)
-                        self.hp -= hp
-                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-
-
-            else:
-                self.armor = 0
-
-
-                if bullet == "AP" or bullet == "HP":
-                    chance = random.randrange(1, 11)
-                    if chance == 1 or chance == 2:
-                        print("MISS SIR")
-                    else:
-                        print("DIRECT HIT SIR")
-                        self.hp -= (hp+armor)
-                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-                elif bullet == "TP":
-                    hp = hp * (random.randrange(60, 61) / 100)
-                    armor = armor * (random.randrange(60, 61) / 100)
-                    self.hp -= (hp+armor)
-                    print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-
-
-                elif bullet == "Nuce":
-                    if self.selfDefense > 0:
-                        loop = 0
-                        while (loop == 0):
-                            Defense = str(input(f"Want to use SeaRAM\n+{hp}hp +{armor} armor\n[YES/NO]"))
-                            if Defense.lower().strip() == "yes":
-                                print("BOOOM Thank God!")
-                                self.selfDefense -= 1
-                                loop += 1
-                            elif Defense.lower().strip() == "no":
-                                print("DIRECT HIT SIR")
-                                self.hp -= hp
-                                loop += 1
-                                print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-                            else:
-                                print("Waiting for your order....")
-                    else:
-                        print("DIRECT HIT SIR")
-                        self.hp -= hp
-                        self.armor = 0
-                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-
-
-                elif bullet == "JR":
-                    if self.selfDefense > 0:
-                        loop = 0
-                        while (loop == 0):
-                            Defense = str(input(f"Want to use SeaRAM\n+{hp}hp +{armor} armor\n[YES/NO]"))
-                            if Defense.lower().strip() == "yes":
-                                print("BOOOM Thank God!")
-                                self.selfDefense -= 1
-                                loop += 1
-                            elif Defense.lower().strip() == "no":
-                                print("DIRECT HIT SIR")
-                                hp = hp * (random.randrange(60, 71) / 100)
-                                self.hp -= hp
-                                loop += 1
-                                print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-                            else:
-                                print("Waiting for your order....")
-                    else:
-                        hp = hp * (random.randrange(60, 71) / 100)
-                        self.hp -= hp
-                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-
-
+                    elif bullet == "JR":
+                        if self.selfDefense > 0:
+                            loop = 0
+                            while (loop == 0):
+                                Defense = str(input(f"Want to use SeaRAM\n+{hp}hp +{armor} armor\n[YES/NO]"))
+                                if Defense.lower().strip() == "yes":
+                                    print("BOOOM Thank God!")
+                                    self.selfDefense -= 1
+                                    loop += 1
+                                elif Defense.lower().strip() == "no":
+                                    print("DIRECT HIT SIR")
+                                    hp = hp * (random.randrange(60, 71) / 100)
+                                    self.hp -= hp
+                                    loop += 1
+                                    print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                                else:
+                                    print("Waiting for your order....")
+                        else:
+                            hp = hp * (random.randrange(60, 71) / 100)
+                            self.hp -= hp
+                            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
 
         elif self.type == "Submarine":
-            if self.armor>0:
-                if bullet == "AP" or bullet == "HP":
-                    chance = random.randrange(1, 11)
-                    if chance == 1 or chance == 2 or chance==3:
-                        print("MISS SIR")
-                    else:
-                        print("DIRECT HIT SIR")
-                        if self.selfDefense > 0:
-                            loop = 0
-                            while (loop == 0):
-                                Defense = str(input(f"Want to dive {-820}ft\n+{hp}hp +{armor} armor\n[YES/NO]"))
-                                if Defense.strip().lower()=="yes":
-                                    print("Ballast tanks are filled with water ready to dive....")
-                                    self.selfDefense-=1
-                                    loop+=1
-                                elif Defense.strip().lower()=="no":
-                                    self.hp-=hp
-                                    self.armor=-armor
-                                    print(f"-{int(hp)}hp\n-{int(armor)} armor")
-                                    loop+=1
-                                else:
-                                    print("Waiting for your order....")
-                        else:
-                            print("DIRECT HIT SIR")
-                            self.hp -= hp
-                            self.armor = -armor
-                            print(f"-{int(hp)}hp\n-{int(armor)} armor")
-
-                elif bullet=="TP":
-                    print("DIRECT HIT SIR")
-                    self.hp-=hp
-                    self.armor-=armor
-                    print(f"-{int(hp)}hp\n-{int(armor)} armor")
-
-
+            if hp == 0:
+                print("MISS SIR")
             else:
-                self.armor=0
-                if bullet == "AP" or bullet == "HP":
-                    chance = random.randrange(1, 11)
-                    if chance == 1 or chance == 2 or chance==3:
-                        print("MISS SIR")
-                    else:
-                        print("DIRECT HIT SIR")
-                        if self.selfDefense > 0:
-                            loop = 0
-                            while (loop == 0):
-                                Defense = str(input(f"Want to dive {-820}ft\n+{hp}hp +{armor} armor\n[YES/NO]"))
-                                if Defense.strip().lower()=="yes":
-                                    print("Ballast tanks are filled with water ready to dive....")
-                                    self.selfDefense-=1
-                                    loop+=1
-                                elif Defense.strip().lower()=="no":
-                                    self.hp-=(hp+armor)
-                                    print(f"-{int(hp)}hp\n-{int(armor)} armor")
-                                    loop+=1
-                                else:
-                                    print("Waiting for your order....")
+                if self.armor>0:
+                    if bullet == "AP" or bullet == "HP":
+                        chance = random.randrange(1, 11)
+                        if chance == 1 or chance == 2 or chance==3:
+                            print("MISS SIR")
                         else:
-                            print("DIRECT HIT SIR")
-                            self.hp -= hp
-                            self.armor = -armor
-                            print(f"-{int(hp)}hp\n-{int(armor)} armor")
+                            if self.selfDefense > 0:
+                                loop = 0
+                                while (loop == 0):
+                                    Defense = str(input(f"Want to dive {-820}ft\n+{hp}hp +{armor} armor\n[YES/NO]"))
+                                    if Defense.strip().lower()=="yes":
+                                        print("Ballast tanks are filled with water ready to dive....")
+                                        self.selfDefense-=1
+                                        loop+=1
+                                    elif Defense.strip().lower()=="no":
+                                        print("DIRECT HIT SIR")
+                                        self.hp-=hp
+                                        self.armor=-armor
+                                        print(f"-{int(hp)}hp\n-{int(armor)} armor")
+                                        loop+=1
+                                    else:
+                                        print("Waiting for your order....")
+                            else:
+                                print("DIRECT HIT SIR")
+                                self.hp -= hp
+                                self.armor = -armor
+                                print(f"-{int(hp)}hp\n-{int(armor)} armor")
 
-                elif bullet == "TP":
-                    print("DIRECT HIT SIR")
-                    self.hp -= (hp+armor)
-                    print(f"-{int(hp)}hp\n-{int(armor)} armor")
+                    elif bullet=="TP":
+                        print("DIRECT HIT SIR")
+                        self.hp-=hp
+                        self.armor-=armor
+                        print(f"-{int(hp)}hp\n-{int(armor)} armor")
+
+
+                else:
+                    self.armor=0
+                    if bullet == "AP" or bullet == "HP":
+                        chance = random.randrange(1, 11)
+                        if chance == 1 or chance == 2 or chance==3:
+                            print("MISS SIR")
+                        else:
+                            if self.selfDefense > 0:
+                                loop = 0
+                                while (loop == 0):
+                                    Defense = str(input(f"Want to dive {-820}ft\n+{hp}hp +{armor} armor\n[YES/NO]"))
+                                    if Defense.strip().lower()=="yes":
+                                        print("Ballast tanks are filled with water ready to dive....")
+                                        self.selfDefense-=1
+                                        loop+=1
+                                    elif Defense.strip().lower()=="no":
+                                        print("DIRECT HIT SIR")
+                                        self.hp-=(hp+armor)
+                                        print(f"-{int(hp)}hp\n-{int(armor)} armor")
+                                        loop+=1
+                                    else:
+                                        print("Waiting for your order....")
+                            else:
+                                print("DIRECT HIT SIR")
+                                self.hp -= hp
+                                self.armor = -armor
+                                print(f"-{int(hp)}hp\n-{int(armor)} armor")
+
+                    elif bullet == "TP":
+                        print("DIRECT HIT SIR")
+                        self.hp -= (hp+armor)
+                        print(f"-{int(hp)}hp\n-{int(armor)} armor")
 
         print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
         print("------------------------------------------------------------------------------------")
-
         pass
 
 

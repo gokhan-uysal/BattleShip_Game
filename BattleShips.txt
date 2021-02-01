@@ -10,7 +10,7 @@ Destroyer:
     Disadvantages:
         *1200 health
         *100 armor
-        *4 canons (Max damage = 100)
+        *4 canons (Max damage = 200)
         *1 type of bullet HP
             (High-Spreader shell)
 
@@ -20,7 +20,7 @@ Cruisers:
         *2 type of bullet HP & AP
             (High-Spreader and Armor Piercing shells)
         *6 canons
-            (Max damage = 200)
+            (Max damage = 250)
         *1400 health
         * 2X Missile defense system: SeaRAM
             (Submarine missiles only)
@@ -34,6 +34,7 @@ Armored:
         *400 armor
         *1600 health
         *8 canons
+            (Max damage = 300)
         *2 type of bullet HP & AP
             (High-Spreader and Armor Piercing shells)
         * 2X Missile defense system: SeaRAM
