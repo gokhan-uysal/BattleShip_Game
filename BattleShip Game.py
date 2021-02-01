@@ -210,7 +210,7 @@ class BattleShips:
                 print(f"DIRECT HIT")
                 hp=hp * (random.randrange(70, 81) / 100)
                 self.hp -= hp
-            print(f"-{hp}hp\n-{armor} armor")
+            print(f"-{int(hp)}hp\n-{int(armor)} armor")
 
         elif self.type == "Cruiser":
             if bullet == "AP" or bullet == "HP" or bullet == "Torpedoes":
@@ -226,7 +226,7 @@ class BattleShips:
                 print(f"DIRECT HIT")
                 hp=hp * (random.randrange(80, 91) / 100)
                 self.hp -= hp
-            print(f"-{hp}hp\n-{armor} armor")
+            print(f"-{int(hp)}hp\n-{int(armor)} armor")
 
         elif self.type == "Armored":
             if self.armor <= 0:
@@ -235,7 +235,7 @@ class BattleShips:
             else:
                 self.hp -= hp * (random.randrange(50, 81) / 100)
                 self.armor -= armor * (random.randrange(60, 81) / 100)
-            print(f"-{hp}hp\n-{armor} armor")
+            print(f"-{int(hp)}hp\n-{int(armor)} armor")
 
         elif self.type == "Submarine":
             if bullet == "AP" or bullet == "HP" or bullet == "Torpedoes":
@@ -248,7 +248,7 @@ class BattleShips:
                     armor=armor * (random.randrange(70, 91) / 100)
                     self.hp -= hp
                     self.armor -= armor
-            print(f"-{hp}hp\n-{armor} armor")
+            print(f"-{int(hp)}hp\n-{int(armor)} armor")
         print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
         print("------------------------------------------------------------------------------------")
 
