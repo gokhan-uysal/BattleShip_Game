@@ -74,7 +74,7 @@ class BattleShips(AirStrike):
             self.armor = 800
             self.numberOfNuces = 1
             self.numberOfJericho = 3
-            self.numberOfTorpedoes = 6
+            self.numberOfTorpedoes = 8
             self.criticHit = 1
             self.Round = 0
         pass
@@ -200,7 +200,7 @@ class BattleShips(AirStrike):
                     return (int(hp), 0, "HP")
 
         elif self.type == "Submarine":
-            if ROUND >= 9:
+            if ROUND >= 7:
                 i = 0
                 while (i == 0):
                     if self.numberOfNuces <= 0:
@@ -220,7 +220,7 @@ class BattleShips(AirStrike):
                             print(
                                 "------------------------------------------------------------------------------------")
                             self.numberOfNuces -= 1
-                            chance = random.randrange(1, 21)
+                            chance = random.randrange(1, 16)
                             if chance == 10:
                                 hp = 0
                                 armor = 0
@@ -441,6 +441,7 @@ class BattleShips(AirStrike):
                     if self.selfDefense > 0:
                         loop = 0
                         while (loop == 0):
+                            hp = hp * (random.randrange(60, 71) / 100)
                             Defense = str(input(f"Want to use SeaRAM\n+{hp}hp +{armor} armor\n[YES/NO]"))
                             if Defense.lower().strip() == "yes":
                                 print("BOOOM Thank God!")
@@ -448,7 +449,6 @@ class BattleShips(AirStrike):
                                 loop += 1
                             elif Defense.lower().strip() == "no":
                                 print("DIRECT HIT SIR")
-                                hp = hp * (random.randrange(60, 71) / 100)
                                 self.hp -= hp
                                 loop += 1
                                 print((f"-{int(hp)}hp\n-{int(armor)} armor"))
@@ -524,7 +524,6 @@ class BattleShips(AirStrike):
                         hp = hp * (random.randrange(60, 71) / 100)
                         self.hp -= hp
                         print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-
 
 
 

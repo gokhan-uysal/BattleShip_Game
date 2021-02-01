@@ -6,13 +6,13 @@ Destroyer:
             (Dealing AP bullet affect)
         * 1X Self defense system: Phalanx CIWS
             (HP & AP bullet only)
+        *Low hit chance
     Disadvantages:
         *1200 health
         *100 armor
         *4 canons (Max damage = 100)
         *1 type of bullet HP
             (High-Spreader shell)
-        *Thin armor
 
 Cruisers:
     Advantages:
@@ -25,6 +25,7 @@ Cruisers:
         * 1X Missile defense system: SeaRAM
             (Submarine missiles only)
     Disadvantages:
+        *High hit chance
         *200 armor
         *30 seconds reload time
 
@@ -39,13 +40,15 @@ Armored:
             (Submarine missiles only)
     Disadvantages:
         *Can shoot every 2 rounds
+        *Very high hit chance
 
-Russian's Nuclear Submarine:
+Nuclear Submarine:
     Advantages:
         *Can fire Nuclear Missiles 1 times:
-            (Dealing high AP & HP damage) (Max damage = 1000) (Until round 9 you can not launch Nuclear Missiles) (Takes 2 round to reach his target)
-        *Can fire Jericho Missiles 3 times (Dealing high HP damage) (Max damage = 500) (Only every 2 rounds)
-        *Can fire Torpedoes 6 times
+            (Dealing high AP & HP damage) (Max damage = 1000) (Until round 7 you can not launch Nuclear Missiles) (Takes 2 round to reach his target)
+        *Can fire Jericho Missiles 3 times
+            (Dealing high HP damage) (Max damage = 500) (Only every 2 rounds)
+        *Can fire Torpedoes 8 times
             (Dealing AP bullet affect)
         *800 armor
         *1X %100 hit chance using NR-50 radar systems
