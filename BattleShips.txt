@@ -38,7 +38,7 @@ Armored:
         * 2X Missile defense system: SeaRAM
             (Submarine missiles only)
     Disadvantages:
-        *Can fire only every 2 rounds
+        *Can shoot every 2 rounds
 
 Russian's Nuclear Submarine:
     Advantages:
