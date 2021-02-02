@@ -27,7 +27,6 @@ Cruisers:
     Disadvantages:
         *High hit chance %70
         *200 armor
-        *30 seconds reload time
 
 Armored:
     Advantages:

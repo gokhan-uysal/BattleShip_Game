@@ -6,6 +6,7 @@ def Intro(index):
     ShipList = ("Destroyer", "Cruiser", "Armored", "Submarine")
     if index == 1:
         print("Welcome to World of Warships")
+        Greeting.Greetings("Captains")
         print(ShipList)
         i = 0
         while (i == 0):
@@ -47,6 +48,7 @@ class Destroyer():
         self.name = name
         self.hp = 1200
         self.armor = 100
+        self.armorPercent=100
         self.numberOfCanons = 4
         self.numberOfTorpedoes = 3
         self.selfDefense = 2
@@ -202,6 +204,7 @@ class Cruiser():
         self.type="Cruiser"
         self.hp = 1400
         self.armor = 200
+        self.armorPercent=200
         self.numberOfCanons = 6
         self.selfDefense = 2
         pass
@@ -377,6 +380,7 @@ class Armored():
         self.name=name
         self.hp = 1600
         self.armor = 400
+        self.armorPercent=400
         self.numberOfCanons = 8
         self.selfDefense = 2
         self.Round = 0
@@ -557,6 +561,7 @@ class Submarine():
         self.name=name
         self.hp = 500
         self.armor = 800
+        self.armorPercent=800
         self.numberOfNuces = 1
         self.numberOfJericho = 3
         self.numberOfTorpedoes = 6
@@ -826,8 +831,7 @@ def main():
             ROUND = -1
             break
         ROUND += 1
-    for values in nameList:
-        Greeting.Greetings(values)
+
 
 
 if __name__== "__main__":
