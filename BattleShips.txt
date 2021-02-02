@@ -6,7 +6,7 @@ Destroyer:
             (Dealing AP bullet affect)
         * 2X Self defense system: Phalanx CIWS
             (HP & AP bullet only)
-        *Low hit chance
+        *Low hit chance %60
     Disadvantages:
         *1200 health
         *100 armor
@@ -23,9 +23,9 @@ Cruisers:
             (Max damage = 250)
         *1400 health
         * 2X Missile defense system: SeaRAM
-            (Submarine missiles only)
+            (Missiles only)
     Disadvantages:
-        *High hit chance
+        *High hit chance %70
         *200 armor
         *30 seconds reload time
 
@@ -38,10 +38,10 @@ Armored:
         *2 type of bullet HP & AP
             (High-Spreader and Armor Piercing shells)
         * 2X Missile defense system: SeaRAM
-            (Submarine missiles only)
+            (Missiles only)
     Disadvantages:
         *Can shoot every 2 rounds
-        *Very high hit chance
+        *Very high hit chance %80
 
 Nuclear Submarine:
     Advantages:
