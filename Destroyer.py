@@ -45,7 +45,7 @@ class Destroyer():
                     hp = 200 * (canon / self.numberOfCanons)
                     i += 1
                     print(
-                        f"Firing HP shells with {canon} out of {self.numberOfCanons} canons Captain {name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
+                        f"Firing HP shells with {canon} out of {self.numberOfCanons} canons Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
                     print("------------------------------------------------------------------------------------")
                     return (int(hp), 0, "HP")
 
