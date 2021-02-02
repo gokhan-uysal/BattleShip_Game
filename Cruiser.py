@@ -1,45 +1,55 @@
 import random
+
+
 class Cruiser():
-    def __init__(self , name):
-        self.name=name
-        self.type="Cruiser"
+    def __init__(self, name):
+        self.name = name
+        self.type = "Cruiser"
         self.hp = 1400
         self.armor = 200
         self.numberOfCanons = 6
         self.selfDefense = 2
         pass
 
-    def ShipFire(self,round):
+    def CanonBreak(self):
+        Chance = random.randrange(0, 16)
+        if Chance == 10:
+            self.numberOfCanons -= 2
+            print("Shit! Captain we lost 2 canons")
+            return 2
+        elif Chance == 5 or Chance == 15:
+            self.numberOfCanons -= 1
+            print("Oh! Captain we lost 1 canon")
+            return 1
+        else:
+            return 0
+        pass
+
+    def ShipFire(self, round, breaked):
         i = 0
         while (i == 0):
             bulletType = str(input(f"Select the bullet type {self.name}:\nAP(Armor-Piercing) ,HP(High-Spreader)"))
-            # CANON BREAK
-            canon = self.numberOfCanons
-            Chance = random.randrange(0, 16)
-            if Chance == 10:
-                canon -= 2
-                print("Shit! Captain we lost 2 canons")
-            elif Chance == 5 or Chance == 15:
-                canon -= 1
-                print("Oh! Captain we lost 1 canon")
-
             if bulletType.upper() == "AP":
-                hit = 250 * (canon / self.numberOfCanons)
+                hit = 250 * (self.numberOfCanons / (self.numberOfCanons + breaked))
                 percent = random.randrange(1, 41) / 100
                 hp, armor = hit * percent, hit * (1 - percent)
                 i += 1
                 print(
-                    f"Firing AP shells with {canon} out of {self.numberOfCanons} canons Captain {self.name}.\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
+                    f"Firing AP shells with {self.numberOfCanons} out of {self.numberOfCanons + breaked} canons Captain {self.name}.\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
                 print("------------------------------------------------------------------------------------")
+                self.numberOfCanons += breaked
                 return (int(hp), int(armor), "AP")
 
             elif bulletType.upper() == "HP":
-                hp = 200 * (canon / self.numberOfCanons)
+                hp = 200 * (self.numberOfCanons / (self.numberOfCanons + breaked))
                 i += 1
                 print(
-                    f"Firing HP shells with {canon} out of {self.numberOfCanons} canons Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
+                    f"Firing HP shells with {self.numberOfCanons} out of {self.numberOfCanons} canons Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
+                self.numberOfCanons += breaked
                 print("------------------------------------------------------------------------------------")
                 return (int(hp), 0, "HP")
+        pass
+
 
     def ShipDefense(self, hp, armor, round, bullet):
         if hp == 0:
@@ -52,15 +62,21 @@ class Cruiser():
                         print("MISS SIR")
                     else:
                         print("DIRECT HIT SIR")
+                        canonBreaked = Cruiser.CanonBreak(self)
                         self.hp -= hp
                         self.armor -= armor
                         print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-
+                        print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                        print("------------------------------------------------------------------------------------")
+                        return canonBreaked
                 elif bullet == "TP":
                     print("DIRECT HIT SIR")
+                    canonBreaked = Cruiser.CanonBreak(self)
                     self.hp -= hp
                     self.armor -= armor
-                    print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                    print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                    print("------------------------------------------------------------------------------------")
+                    return canonBreaked
 
                 elif bullet == "Nuce":
                     if hp == 0:
@@ -76,17 +92,28 @@ class Cruiser():
                                     loop += 1
                                 elif Defense.lower().strip() == "no":
                                     print("DIRECT HIT SIR")
+                                    canonBreaked = Cruiser.CanonBreak(self)
                                     self.hp -= hp
                                     self.armor = 0
                                     loop += 1
                                     print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                                    print(
+                                        f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                                    print(
+                                        "------------------------------------------------------------------------------------")
+                                    return canonBreaked
                                 else:
                                     print("Waiting for your order....")
                         else:
                             print("DIRECT HIT SIR")
+                            canonBreaked = Cruiser.CanonBreak(self)
                             self.hp -= hp
                             self.armor = 0
                             print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                            print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                            print(
+                                "------------------------------------------------------------------------------------")
+                            return canonBreaked
 
                 elif bullet == "JR":
                     if self.selfDefense > 0 and hp > 0:
@@ -100,16 +127,25 @@ class Cruiser():
                                 loop += 1
                             elif Defense.lower().strip() == "no":
                                 print("DIRECT HIT SIR")
+                                canonBreaked = Cruiser.CanonBreak(self)
                                 self.hp -= hp
                                 loop += 1
                                 print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                                print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                                print(
+                                    "------------------------------------------------------------------------------------")
+                                return canonBreaked
                             else:
                                 print("Waiting for your order....")
                     else:
                         print("DIRECT HIT SIR")
+                        canonBreaked = Cruiser.CanonBreak(self)
                         hp = hp * (random.randrange(60, 71) / 100)
                         self.hp -= hp
                         print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                        print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                        print("------------------------------------------------------------------------------------")
+                        return canonBreaked
             else:
                 self.armor = 0
                 if bullet == "AP" or bullet == "HP":
@@ -118,14 +154,21 @@ class Cruiser():
                         print("MISS SIR")
                     else:
                         print("DIRECT HIT SIR")
+                        canonBreaked = Cruiser.CanonBreak(self)
                         self.hp -= (hp + armor)
                         print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                        print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                        print("------------------------------------------------------------------------------------")
+                        return canonBreaked
 
                 elif bullet == "TP":
                     print("DIRECT HIT SIR")
+                    canonBreaked = Cruiser.CanonBreak(self)
                     self.hp -= (hp + armor)
                     print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-
+                    print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                    print("------------------------------------------------------------------------------------")
+                    return canonBreaked
 
                 elif bullet == "Nuce":
                     if self.selfDefense > 0 and hp > 0:
@@ -138,15 +181,24 @@ class Cruiser():
                                 loop += 1
                             elif Defense.lower().strip() == "no":
                                 print("DIRECT HIT SIR")
+                                canonBreaked = Cruiser.CanonBreak(self)
                                 self.hp -= hp
                                 loop += 1
                                 print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                                print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                                print(
+                                    "------------------------------------------------------------------------------------")
+                                return canonBreaked
                             else:
                                 print("Waiting for your order....")
                     else:
                         print("DIRECT HIT SIR")
+                        canonBreaked = Cruiser.CanonBreak(self)
                         self.hp -= hp
                         print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                        print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                        print("------------------------------------------------------------------------------------")
+                        return canonBreaked
 
                 elif bullet == "JR":
                     if self.selfDefense > 0 and hp > 0:
@@ -157,19 +209,30 @@ class Cruiser():
                                 print("BOOOM Thank God!")
                                 self.selfDefense -= 1
                                 loop += 1
+
                             elif Defense.lower().strip() == "no":
                                 print("DIRECT HIT SIR")
+                                canonBreaked = Cruiser.CanonBreak(self)
                                 hp = hp * (random.randrange(60, 71) / 100)
                                 self.hp -= hp
                                 loop += 1
                                 print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                                print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                                print(
+                                    "------------------------------------------------------------------------------------")
+                                return canonBreaked
                             else:
                                 print("Waiting for your order....")
                     else:
                         print("DIRECT HIT SIR")
+                        canonBreaked = Cruiser.CanonBreak(self)
                         hp = hp * (random.randrange(60, 71) / 100)
                         self.hp -= hp
                         print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                        print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                        print("------------------------------------------------------------------------------------")
+                        return canonBreaked
         print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
         print("------------------------------------------------------------------------------------")
+        return 0
         pass

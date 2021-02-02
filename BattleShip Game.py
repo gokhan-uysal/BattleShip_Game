@@ -8,7 +8,6 @@ from Submarine import Submarine
 nameList = []
 typeList = []
 
-
 def Intro(index):
     ShipList = ("Destroyer", "Cruiser", "Armored", "Submarine")
     if index == 1:
@@ -71,29 +70,52 @@ def main():
 
     ROUND = 1
     while not Ship1.hp <= 0 or not Ship2.hp <= 0 and not ROUND <= 0:
-        print(f"~ROUND{ROUND}~")
-        hp1, armor1, AMMUNATION = Ship1.ShipFire(ROUND)
-        Ship2.ShipDefense(hp1, armor1, ROUND, AMMUNATION)
-        if Ship1.hp <= 0:
-            print(f"Captain {Ship2.name} is the ruler of the seas\nTHE END")
-            ROUND = -1
-            break
-        elif Ship2.hp <= 0:
-            print(f"Captain {Ship1.name} is the ruler of the seas\nTHE END")
-            ROUND = -1
-            break
-        hp2, armor2, AMMUNATION2 = Ship2.ShipFire(ROUND)
-        Ship1.ShipDefense(hp2, armor2, ROUND, AMMUNATION2)
-        if Ship1.hp <= 0:
-            print(f"Captain {Ship2.name} is the ruler of the seas\nTHE END")
-            ROUND = -1
-            break
-        elif Ship2.hp <= 0:
-            print(f"Captain {Ship1.name} is the ruler of the seas\nTHE END")
-            ROUND = -1
-            break
-        ROUND += 1
-
+        if ROUND==1:
+            print(f"~ROUND{ROUND}~")
+            hp1, armor1, AMMUNATION = Ship1.ShipFire(ROUND , 0 )
+            breakCanon1 = Ship2.ShipDefense(hp1, armor1, ROUND, AMMUNATION)
+            if Ship1.hp <= 0:
+                print(f"Captain {Ship2.name} is the ruler of the seas\nTHE END")
+                ROUND = -1
+                break
+            elif Ship2.hp <= 0:
+                print(f"Captain {Ship1.name} is the ruler of the seas\nTHE END")
+                ROUND = -1
+                break
+            hp2, armor2, AMMUNATION2 = Ship2.ShipFire(ROUND , breakCanon1)
+            breakCanon2 = Ship1.ShipDefense(hp2, armor2, ROUND, AMMUNATION2)
+            if Ship1.hp <= 0:
+                print(f"Captain {Ship2.name} is the ruler of the seas\nTHE END")
+                ROUND = -1
+                break
+            elif Ship2.hp <= 0:
+                print(f"Captain {Ship1.name} is the ruler of the seas\nTHE END")
+                ROUND = -1
+                break
+            ROUND += 1
+        else:
+            print(f"~ROUND{ROUND}~")
+            hp1, armor1, AMMUNATION = Ship1.ShipFire(ROUND , breakCanon2)
+            breakCanon3 = Ship2.ShipDefense(hp1, armor1, ROUND, AMMUNATION)
+            if Ship1.hp <= 0:
+                print(f"Captain {Ship2.name} is the ruler of the seas\nTHE END")
+                ROUND = -1
+                break
+            elif Ship2.hp <= 0:
+                print(f"Captain {Ship1.name} is the ruler of the seas\nTHE END")
+                ROUND = -1
+                break
+            hp2, armor2, AMMUNATION2 = Ship2.ShipFire(ROUND, breakCanon3)
+            breakCanon2 = Ship1.ShipDefense(hp2, armor2, ROUND, AMMUNATION2)
+            if Ship1.hp <= 0:
+                print(f"Captain {Ship2.name} is the ruler of the seas\nTHE END")
+                ROUND = -1
+                break
+            elif Ship2.hp <= 0:
+                print(f"Captain {Ship1.name} is the ruler of the seas\nTHE END")
+                ROUND = -1
+                break
+            ROUND += 1
 
 
 if __name__== "__main__":
