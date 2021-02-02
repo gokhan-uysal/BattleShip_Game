@@ -173,7 +173,7 @@ class Submarine():
             if self.armor > 0:
                 if bullet == "AP" or bullet == "HP":
                     chance = random.randrange(1, 11)
-                    if chance == 1 or chance == 2 or chance==3:
+                    if chance == 1 or chance == 2:
                         print("MISS SIR")
                     else:
                         if self.selfDefense > 0:

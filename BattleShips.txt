@@ -2,9 +2,9 @@
 Destroyer:
     Advantages:
         *Can shoot every round
-        *Can fire Torpedoes 6 times
+        *Can fire Torpedoes 3 times
             (Dealing AP bullet affect)
-        * 2X Self defense system: Phalanx CIWS
+        * 1X Self defense system: Phalanx CIWS
             (HP & AP bullet only)
         *Low hit chance %60
     Disadvantages:
