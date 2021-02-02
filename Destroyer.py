@@ -5,9 +5,10 @@ class Destroyer():
         self.name = name
         self.hp = 1200
         self.armor = 100
+        self.armorPercent =100
         self.numberOfCanons = 4
         self.numberOfTorpedoes = 3
-        self.selfDefense = 2
+        self.selfDefense = 1
 
     def CanonBreak(self):
         Chance = random.randrange(0, 21)
@@ -63,7 +64,7 @@ class Destroyer():
         if hp == 0 and armor == 0:
             print("MISS SIR")
         else:
-            if self.armor - armor > 0:
+            if self.armor > 0:
                 if bullet == "AP" or bullet == "HP":
                     chance = random.randrange(1, 11)
                     if chance == 1 or chance == 2 or chance == 3 or chance == 4:
@@ -80,14 +81,23 @@ class Destroyer():
                                 elif Defense.lower().strip() == "no":
                                     print("DIRECT HIT SIR")
                                     breakedCanon = Destroyer.CanonBreak(self)
-                                    self.hp -= hp
-                                    self.armor -= armor
-                                    loop += 1
-                                    print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-                                    print(
-                                        f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
-                                    print(
-                                        "------------------------------------------------------------------------------------")
+                                    if bullet=="AP":
+                                        self.hp -= hp
+                                        self.armor -= armor
+                                        loop += 1
+                                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                                        print(
+                                            f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                                        print(
+                                            "------------------------------------------------------------------------------------")
+                                    else:
+                                        self.hp -= hp*(1-(self.armor/self.armorPercent))
+                                        loop+=1
+                                        print((f"-{int(hp*(1-(self.armor/self.armorPercent)))}hp"))
+                                        print(
+                                            f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                                        print(
+                                            "------------------------------------------------------------------------------------")
                                     return breakedCanon
                                 else:
                                     print("Waiting for your order....")

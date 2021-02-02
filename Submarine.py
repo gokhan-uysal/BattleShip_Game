@@ -4,12 +4,12 @@ class Submarine():
         self.name=name
         self.hp = 500
         self.armor = 800
+        self.armorPercent =800
         self.numberOfNuces = 1
         self.numberOfJericho = 3
         self.numberOfTorpedoes = 6
         self.selfDefense = 1
         self.criticHit = 1
-        self.Round = 0
         pass
 
 
@@ -167,10 +167,10 @@ class Submarine():
 
 
     def ShipDefense(self, hp, armor, round, bullet):
-        if hp == 0:
+        if hp == 0 and armor==0:
             print("MISS SIR")
         else:
-            if self.armor-armor>0:
+            if self.armor > 0:
                 if bullet == "AP" or bullet == "HP":
                     chance = random.randrange(1, 11)
                     if chance == 1 or chance == 2 or chance==3:
@@ -186,10 +186,15 @@ class Submarine():
                                     loop+=1
                                 elif Defense.strip().lower()=="no":
                                     print("DIRECT HIT SIR")
-                                    self.hp-=hp
-                                    self.armor-=armor
-                                    print(f"-{int(hp)}hp\n-{int(armor)} armor")
-                                    loop+=1
+                                    if bullet == "AP":
+                                        self.hp -= hp
+                                        self.armor -= armor
+                                        loop += 1
+                                    else:
+                                        self.hp -= hp * (1 - (self.armor / self.armorPercent))
+                                        loop+=1
+                                        print(f"-{int(hp * (1 - (self.armor / self.armorPercent)))}hp")
+                                        loop+=1
                                 else:
                                     print("Waiting for your order....")
                         else:

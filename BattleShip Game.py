@@ -4,6 +4,10 @@ from Cruiser import Cruiser
 from Armored import Armored
 from Submarine import Submarine
 
+"""
+nameList = ["Gökhan","Suhan"]
+typeList = ["Destroyer","Submarine"]
+"""
 
 nameList = []
 typeList = []

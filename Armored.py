@@ -5,6 +5,7 @@ class Armored():
         self.name=name
         self.hp = 1600
         self.armor = 400
+        self.armorPercent=400
         self.numberOfCanons = 8
         self.selfDefense = 2
         self.Round = 0
@@ -48,10 +49,10 @@ class Armored():
                 return (int(hp), 0, "HP")
 
     def ShipDefense(self, hp, armor, round, bullet):
-        if hp == 0:
+        if hp == 0 and armor==0:
             print("MISS SIR")
         else:
-            if self.armor - armor > 0:
+            if self.armor  > 0:
                 if bullet == "AP" or bullet == "HP":
                     chance = random.randrange(1, 11)
                     if chance == 1 or chance == 2:
@@ -59,11 +60,18 @@ class Armored():
                     else:
                         print("DIRECT HIT SIR")
                         canonBreaked = Armored.CanonBreak(self)
-                        self.hp -= hp
-                        self.armor -= armor
-                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-                        print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
-                        print("------------------------------------------------------------------------------------")
+                        if bullet == "AP":
+                            self.hp -= hp
+                            self.armor -= armor
+                            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                            print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                            print(
+                                "------------------------------------------------------------------------------------")
+                        else:
+                            self.hp -= hp * (1 - (self.armor / self.armorPercent))
+                            print((f"-{int(hp * (1 - (self.armor / self.armorPercent)))}hp"))
+                            print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                            print("------------------------------------------------------------------------------------")
                         return canonBreaked
 
 
@@ -145,7 +153,6 @@ class Armored():
 
             else:
                 self.armor = 0
-
                 if bullet == "AP" or bullet == "HP":
                     chance = random.randrange(1, 11)
                     if chance == 1 or chance == 2:
@@ -231,6 +238,7 @@ class Armored():
                         print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                         print("------------------------------------------------------------------------------------")
                         return canonBreaked
+
         print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
         print("------------------------------------------------------------------------------------")
         return 0
