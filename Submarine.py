@@ -23,7 +23,7 @@ class Submarine():
             return 0
         pass
     def ShipFire(self ,round , breaked):
-        if round >= 7:
+        if round >= 8:
             i = 0
             while (i == 0):
                 if self.numberOfNuces <= 0:

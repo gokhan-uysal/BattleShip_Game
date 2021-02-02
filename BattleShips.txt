@@ -45,7 +45,7 @@ Armored:
 Nuclear Submarine:
     Advantages:
         *Can fire Nuclear Missiles 1 times:
-            (Dealing high AP & HP damage) (Max damage = 1000) (Until round 7 you can not launch Nuclear Missiles) (Takes 2 round to reach his target)
+            (Dealing high AP & HP damage) (Max damage = 1000) (Until round 8 you can not launch Nuclear Missiles) (Takes 2 round to reach his target)
         *Can fire Jericho Missiles 3 times
             (Dealing high HP damage) (Max damage = 500) (Only every 2 rounds)
         *Can fire Torpedoes 6 times
