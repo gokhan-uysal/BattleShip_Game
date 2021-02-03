@@ -1,4 +1,18 @@
 ------------------------------------------------------------------------------------
+Bullets:
+    HP (High-Spreader):
+        This deadly shell deals too much damage if enemy's armor is low.
+    AP (Armor-Piercer):
+        If the enemy ship has no armor, this bullet just tickles but if it's
+        other way around you will proud of this shell.
+    TP (Torpedoes):
+        Give enemy a "small" surprise they won't notice that their armor is gone.
+    JR (Jericho-Missiles):
+        This weapon is simple just a rain of missiles :)
+    Nuce (Nuclear Missile):
+        Perfect opportunity to end this war quickly ,but don't be fooled by
+        the fact that it finishes quick.
+------------------------------------------------------------------------------------
 Destroyer:
     Advantages:
         *Can shoot every round
@@ -9,7 +23,7 @@ Destroyer:
         *Low hit chance %60
     Disadvantages:
         *1200 health
-        *100 armor
+        *200 armor
         *4 canons (Max damage = 200)
         *1 type of bullet HP
             (High-Spreader shell)
@@ -26,7 +40,7 @@ Cruisers:
             (Missiles only)
     Disadvantages:
         *High hit chance %70
-        *200 armor
+        *300 armor
 
 Armored:
     Advantages:

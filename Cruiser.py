@@ -6,7 +6,7 @@ class Cruiser():
         self.name = name
         self.type = "Cruiser"
         self.hp = 1400
-        self.armor = 200
+        self.armor = 300
         self.armorPercent =200
         self.numberOfCanons = 6
         self.selfDefense = 2

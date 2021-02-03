@@ -4,7 +4,7 @@ class Destroyer():
         self.type = "Destroyer"
         self.name = name
         self.hp = 1200
-        self.armor = 100
+        self.armor = 200
         self.armorPercent =100
         self.numberOfCanons = 4
         self.numberOfTorpedoes = 3
@@ -49,7 +49,7 @@ class Destroyer():
 
                 elif bulletType.upper().strip() == "TP":
                     self.numberOfTorpedoes -= 1
-                    hit = 400
+                    hit = 300
                     percent = random.randrange(0, 45) / 100
                     hp, armor = hit * percent, hit * (1 - percent)
                     i += 1
