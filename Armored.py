@@ -13,8 +13,9 @@ class Armored():
     def CanonBreak(self):
         Chance = random.randrange(0, 21)
         if Chance == 10:
-            self.numberOfCanons -= self.numberOfCanons
+            self.numberOfCanons -= 7
             print("Shit! Captain we lost all canons")
+            return 7
         elif Chance == 5 or Chance == 10 or Chance == 15 or Chance == 20 or Chance == 19:
             self.numberOfCanons -= 2
             print("Oh! Captain we lost 2 canon")
@@ -41,7 +42,7 @@ class Armored():
                 return (int(hp), int(armor), "AP")
 
             elif bulletType.upper() == "HP":
-                hp = 250 * (self.numberOfCanons / (self.numberOfCanons+breaked))
+                hp = 325 * (self.numberOfCanons / (self.numberOfCanons+breaked))
                 i += 1
                 print(
                     f"Firing HP shells with {self.numberOfCanons} out of {self.numberOfCanons+breaked} canons Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
@@ -61,9 +62,15 @@ class Armored():
                         print("DIRECT HIT SIR")
                         canonBreaked = Armored.CanonBreak(self)
                         if bullet == "AP":
-                            self.hp -= hp
-                            self.armor -= armor
-                            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                            if self.armor-armor<0:
+                                self.hp-=(hp+armor-self.armor)
+                                print((f"-{int(hp+armor-self.armor)}hp\n-{int(self.armor)} armor"))
+                                self.armor=0
+                            else:
+
+                                self.hp -= hp
+                                self.armor -= armor
+                                print((f"-{int(hp)}hp\n-{int(armor)} armor"))
                             print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                             print(
                                 "------------------------------------------------------------------------------------")
@@ -78,9 +85,15 @@ class Armored():
                 elif bullet == "TP":
                     print("DIRECT HIT SIR")
                     canonBreaked = Armored.CanonBreak(self)
-                    self.hp -= hp
-                    self.armor -= armor
-                    print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                    if self.armor - armor < 0:
+                        self.hp -= (hp + armor - self.armor)
+                        print((f"-{int(hp + armor - self.armor)}hp\n-{int(self.armor)} armor"))
+                        self.armor=0
+                    else:
+
+                        self.hp -= hp
+                        self.armor -= armor
+                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
                     print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                     print("------------------------------------------------------------------------------------")
                     return canonBreaked
@@ -97,8 +110,14 @@ class Armored():
                             elif Defense.lower().strip() == "no":
                                 print("DIRECT HIT SIR")
                                 canonBreaked = Armored.CanonBreak(self)
-                                self.hp -= hp
-                                self.armor = 0
+                                if self.armor - armor < 0:
+                                    self.hp -= (hp + armor - self.armor)
+                                    print((f"-{int(hp + armor - self.armor)}hp\n-{int(self.armor)} armor"))
+                                    self.armor=0
+                                else:
+                                    self.hp -= hp
+                                    self.armor -= armor
+                                    print((f"-{int(hp)}hp\n-{int(armor)} armor"))
                                 loop += 1
                                 print((f"-{int(hp)}hp\n-{int(armor)} armor"))
                                 print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
@@ -110,9 +129,14 @@ class Armored():
                     else:
                         print("DIRECT HIT SIR")
                         canonBreaked = Armored.CanonBreak(self)
-                        self.hp -= hp
-                        self.armor = 0
-                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                        if self.armor - armor < 0:
+                            self.hp -= (hp + armor - self.armor)
+                            print((f"-{int(hp + armor - self.armor)}hp\n-{int(self.armor)} armor"))
+                            self.armor = 0
+                        else:
+                            self.hp -= hp
+                            self.armor -= armor
+                            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
                         print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                         print("------------------------------------------------------------------------------------")
                         return canonBreaked

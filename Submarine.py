@@ -16,12 +16,13 @@ class Submarine():
     def MissileBreak(self):
         Chance=random.randrange(0,21)
         if Chance==10:
-            MissileCount=self.numberOfJericho
-            self.numberOfJericho=0
-            return MissileCount
+            TorpedoesCount=self.numberOfTorpedoes
+            self.numberOfTorpedoes-=1
+            return 1
         else:
             return 0
         pass
+
     def ShipFire(self ,round , breaked):
         if round >= 8:
             i = 0
@@ -144,7 +145,7 @@ class Submarine():
                 if bulletType.strip().upper() == "TP":
                     self.numberOfTorpedoes -= 1
                     hit = 400
-                    percent = random.randrange(0, 45) / 100
+                    percent = (random.randrange(1, 41) / 100)
                     hp, armor = hit * percent, hit * (1 - percent)
                     i += 1
                     print(
@@ -152,6 +153,7 @@ class Submarine():
                     print(
                         "------------------------------------------------------------------------------------")
                     return (int(hp), int(armor), "TP")
+
                 elif bulletType.strip().upper() == "JR":
                     self.numberOfJericho -= 1
                     hit = 500
@@ -187,6 +189,14 @@ class Submarine():
                                 elif Defense.strip().lower()=="no":
                                     print("DIRECT HIT SIR")
                                     if bullet == "AP":
+                                        if self.armor - armor < 0:
+                                            self.hp -= (hp + armor - self.armor)
+                                            print((f"-{int(hp + armor - self.armor)}hp\n-{int(self.armor)} armor"))
+                                            self.armor = 0
+                                        else:
+                                            self.hp -= hp
+                                            self.armor -= armor
+                                            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
                                         self.hp -= hp
                                         self.armor -= armor
                                         loop += 1
@@ -199,15 +209,25 @@ class Submarine():
                                     print("Waiting for your order....")
                         else:
                             print("DIRECT HIT SIR")
-                            self.hp -= hp
-                            self.armor -=armor
-                            print(f"-{int(hp)}hp\n-{int(armor)} armor")
+                            if self.armor - armor < 0:
+                                self.hp -= (hp + armor - self.armor)
+                                print((f"-{int(hp + armor - self.armor)}hp\n-{int(self.armor)} armor"))
+                                self.armor = 0
+                            else:
+                                self.hp -= hp
+                                self.armor -= armor
+                                print((f"-{int(hp)}hp\n-{int(armor)} armor"))
 
                 elif bullet=="TP":
                     print("DIRECT HIT SIR")
-                    self.hp-=hp
-                    self.armor-=armor
-                    print(f"-{int(hp)}hp\n-{int(armor)} armor")
+                    if self.armor - armor < 0:
+                        self.hp -= (hp + armor - self.armor)
+                        print((f"-{int(hp + armor - self.armor)}hp\n-{int(self.armor)} armor"))
+                        self.armor = 0
+                    else:
+                        self.hp -= hp
+                        self.armor -= armor
+                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
 
 
             else:

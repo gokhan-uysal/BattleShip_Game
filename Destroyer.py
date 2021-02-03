@@ -82,10 +82,15 @@ class Destroyer():
                                     print("DIRECT HIT SIR")
                                     breakedCanon = Destroyer.CanonBreak(self)
                                     if bullet=="AP":
-                                        self.hp -= hp
-                                        self.armor -= armor
-                                        loop += 1
-                                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                                        if self.armor-armor<0:
+                                            self.hp -= (hp+armor-self.armor)
+                                            loop += 1
+                                            print((f"-{int((hp+armor-self.armor))}hp\n-{self.armor} armor"))
+                                            self.armor=0
+                                        else:
+                                            self.hp-=hp
+                                            self.armor-=armor
+                                            print((f"-{int((hp))}hp\n-{int(armor)} armor"))
                                         print(
                                             f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                                         print(
@@ -104,31 +109,51 @@ class Destroyer():
                         else:
                             print("DIRECT HIT SIR")
                             breakedCanon = Destroyer.CanonBreak(self)
-                            self.hp -= hp
-                            self.armor -= armor
-                            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-                            self.hp -= hp
-                            self.armor -= armor
-                            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-                            print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
-                            print(
-                                "------------------------------------------------------------------------------------")
+                            if bullet == "AP":
+                                if self.armor - armor < 0:
+                                    self.hp -= (hp+armor-self.armor)
+                                    print((f"-{int((hp+armor-self.armor))}hp\n-{self.armor} armor"))
+                                    self.armor = 0
+                                else:
+                                    self.hp -= hp
+                                    self.armor -= armor
+                                    print((f"-{int((hp))}hp\n-{int(armor)} armor"))
+                                print(
+                                    f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                                print(
+                                    "------------------------------------------------------------------------------------")
+                            else:
+                                self.hp -= hp * (1 - (self.armor / self.armorPercent))
+                                print((f"-{int(hp * (1 - (self.armor / self.armorPercent)))}hp"))
+                                print(
+                                    f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                                print(
+                                    "------------------------------------------------------------------------------------")
                             return breakedCanon
                 elif bullet == "TP":
                     print("DIRECT HIT SIR")
                     canonBreaked = Destroyer.CanonBreak(self)
-                    self.hp -= hp
-                    self.armor -= armor
-                    print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                    if self.armor-armor<0:
+                        self.hp-=(hp+armor-self.armor)
+                        print((f"-{int(hp+armor-self.armor)}hp\n-{int(self.armor)} armor"))
+                        self.armor=0
+                    else:
+                        self.hp -= hp
+                        self.armor -= armor
+                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
                     print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                     print("------------------------------------------------------------------------------------")
                     return canonBreaked
                 elif bullet == "Nuce":
                     print("DIRECT HIT SIR")
                     canonBreaked = Destroyer.CanonBreak(self)
-                    self.hp -= hp
-                    self.armor = 0
-                    print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                    if self.armor-armor<0:
+                        self.hp-=(hp+armor-self.armor)
+                        print((f"-{int(hp+armor-self.armor)}hp\n-{int(self.armor)} armor"))
+                    else:
+                        self.hp -= hp
+                        self.armor = 0
+                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
                     print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                     print("------------------------------------------------------------------------------------")
                     return canonBreaked

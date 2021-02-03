@@ -42,7 +42,7 @@ class Cruiser():
                 return (int(hp), int(armor), "AP")
 
             elif bulletType.upper() == "HP":
-                hp = 200 * (self.numberOfCanons / (self.numberOfCanons + breaked))
+                hp = 275 * (self.numberOfCanons / (self.numberOfCanons + breaked))
                 i += 1
                 print(
                     f"Firing HP shells with {self.numberOfCanons} out of {self.numberOfCanons} canons Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
@@ -65,8 +65,14 @@ class Cruiser():
                         print("DIRECT HIT SIR")
                         canonBreaked = Cruiser.CanonBreak(self)
                         if bullet == "AP":
-                            self.hp -= hp
-                            self.armor -= armor
+                            if self.armor-armor<0:
+                                self.hp-=(hp+armor-self.armor)
+                                print((f"-{int(hp+armor-self.armor)}hp\n-{self.armor} armor"))
+                                self.armor=0
+                            else:
+                                self.hp -= hp
+                                self.armor -= armor
+                                print((f"-{int(hp * (1 - (self.armor / self.armorPercent)))}hp"))
                             print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                             print(
                                 "------------------------------------------------------------------------------------")
@@ -76,11 +82,17 @@ class Cruiser():
                             print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                             print("------------------------------------------------------------------------------------")
                         return canonBreaked
+
                 elif bullet == "TP":
                     print("DIRECT HIT SIR")
                     canonBreaked = Cruiser.CanonBreak(self)
-                    self.hp -= hp
-                    self.armor -= armor
+                    if self.armor-armor<0:
+                        self.hp-=(hp+armor-self.armor)
+                        print((f"-{int(hp+armor-self.armor)}hp\n-{self.armor} armor"))
+                        self.armor=0
+                    else:
+                        self.hp -= hp
+                        self.armor -= armor
                     print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                     print("------------------------------------------------------------------------------------")
                     return canonBreaked
@@ -100,10 +112,14 @@ class Cruiser():
                                 elif Defense.lower().strip() == "no":
                                     print("DIRECT HIT SIR")
                                     canonBreaked = Cruiser.CanonBreak(self)
-                                    self.hp -= hp
-                                    self.armor = 0
-                                    loop += 1
-                                    print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                                    if self.armor - armor < 0:
+                                        self.hp -= (hp+armor-self.armor)
+                                        print((f"-{int(hp+armor-self.armor)}hp\n-{self.armor} armor"))
+                                        self.armor = 0
+                                    else:
+                                        self.hp -= hp
+                                        self.armor -= armor
+                                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
                                     print(
                                         f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                                     print(
@@ -114,9 +130,14 @@ class Cruiser():
                         else:
                             print("DIRECT HIT SIR")
                             canonBreaked = Cruiser.CanonBreak(self)
-                            self.hp -= hp
-                            self.armor = 0
-                            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                            if self.armor - armor < 0:
+                                self.hp -= (hp+armor-self.armor)
+                                print((f"-{int(hp+armor-self.armor)}hp\n-{self.armor} armor"))
+                                self.armor = 0
+                            else:
+                                self.hp -= hp
+                                self.armor -= armor
+                                print((f"-{int(hp)}hp\n-{int(armor)} armor"))
                             print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                             print(
                                 "------------------------------------------------------------------------------------")
