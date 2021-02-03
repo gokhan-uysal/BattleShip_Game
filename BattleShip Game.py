@@ -4,7 +4,7 @@ from Cruiser import Cruiser
 from Armored import Armored
 from Submarine import Submarine
 
-
+"""
 nameList = ["Gökhan","Suhan"]
 typeList = ["Cruiser","Armored"]
 """
@@ -50,7 +50,7 @@ for i in range(1, 3):
     typeList.append(type)
 print("Now Let's Start The Battle")
 print("------------------------------------------------------------------------------------")
-"""
+
 
 def main():
     if typeList[0]=="Destroyer":
