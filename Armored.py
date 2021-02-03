@@ -14,11 +14,11 @@ class Armored():
         Chance = random.randrange(0, 21)
         if Chance == 10:
             self.numberOfCanons -= 7
-            print("Shit! Captain we lost all canons")
+            print("Shit! Captain we lost 7 canons")
             return 7
         elif Chance == 5 or Chance == 10 or Chance == 15 or Chance == 20 or Chance == 19:
             self.numberOfCanons -= 2
-            print("Oh! Captain we lost 2 canon")
+            print("Oh! Captain we lost 2 canons")
             return 2
         elif Chance == 2 or Chance == 4 or Chance == 6 or Chance == 8 or Chance == 10 or Chance == 12:
             self.numberOfCanons -= 1
@@ -39,6 +39,7 @@ class Armored():
                 print(
                     f"Firing AP shells with {self.numberOfCanons} out of {self.numberOfCanons+breaked} canons Captain {self.name}.\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
                 print("------------------------------------------------------------------------------------")
+                self.numberOfCanons += breaked
                 return (int(hp), int(armor), "AP")
 
             elif bulletType.upper() == "HP":
@@ -47,6 +48,7 @@ class Armored():
                 print(
                     f"Firing HP shells with {self.numberOfCanons} out of {self.numberOfCanons+breaked} canons Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
                 print("------------------------------------------------------------------------------------")
+                self.numberOfCanons += breaked
                 return (int(hp), 0, "HP")
 
     def ShipDefense(self, hp, armor, round, bullet):
@@ -191,6 +193,7 @@ class Armored():
                         return canonBreaked
 
                 elif bullet == "TP":
+                    print("DIRECT HIT SIR")
                     canonBreaked = Armored.CanonBreak(self)
                     self.hp -= (hp + armor)
                     print((f"-{int(hp)}hp\n-{int(armor)} armor"))
