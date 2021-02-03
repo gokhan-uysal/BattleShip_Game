@@ -74,13 +74,13 @@ class Cruiser():
                             else:
                                 self.hp -= hp
                                 self.armor -= armor
-                                print((f"-{int(hp * (1 - (self.armor / self.armorPercent)))}hp"))
+                                print((f"-{int(hp)}hp\n-{self.armor} armor"))
                             print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                             print(
                                 "------------------------------------------------------------------------------------")
                         else:
-                            self.hp -= hp * (1 - (self.armor / self.armorPercent))
-                            print((f"-{int(hp * (1 - (self.armor / self.armorPercent)))}hp"))
+                            self.hp -= hp * (1 - ((self.armor/1.3) / self.armorPercent))
+                            print((f"-{int(hp * (1 - ((self.armor/1.3) / self.armorPercent)))}hp"))
                             print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                             print("------------------------------------------------------------------------------------")
                         return canonBreaked

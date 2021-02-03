@@ -203,9 +203,9 @@ class Submarine():
                                         self.armor -= armor
                                         loop += 1
                                     else:
-                                        self.hp -= hp * (1 - (self.armor / self.armorPercent))
+                                        self.hp -= hp * (1 - ((self.armor/1.1) / self.armorPercent))
                                         loop+=1
-                                        print(f"-{int(hp * (1 - (self.armor / self.armorPercent)))}hp")
+                                        print(f"-{int(hp * (1 - ((self.armor/1.1) / self.armorPercent)))}hp")
                                         loop+=1
                                 else:
                                     print("Waiting for your order....")

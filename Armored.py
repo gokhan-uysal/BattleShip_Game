@@ -71,7 +71,6 @@ class Armored():
                                 print((f"-{int(hp+armor-self.armor)}hp\n-{int(self.armor)} armor"))
                                 self.armor=0
                             else:
-
                                 self.hp -= hp
                                 self.armor -= armor
                                 print((f"-{int(hp)}hp\n-{int(armor)} armor"))
@@ -79,8 +78,8 @@ class Armored():
                             print(
                                 "------------------------------------------------------------------------------------")
                         else:
-                            self.hp -= hp * (1 - (self.armor / self.armorPercent))
-                            print((f"-{int(hp * (1 - (self.armor / self.armorPercent)))}hp"))
+                            self.hp -= hp * (1 - ((self.armor/1.2) / self.armorPercent))
+                            print((f"-{int(hp * (1 - ((self.armor/1.2) / self.armorPercent)))}hp"))
                             print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                             print("------------------------------------------------------------------------------------")
                         return canonBreaked
