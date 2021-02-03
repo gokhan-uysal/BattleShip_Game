@@ -4,6 +4,8 @@ class Submarine():
         self.name=name
         self.hp = 500
         self.armor = 800
+        if self.armor<0:
+            self.armor=0
         self.armorPercent =800
         self.numberOfNuces = 1
         self.numberOfJericho = 3

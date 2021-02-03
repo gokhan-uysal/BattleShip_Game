@@ -5,7 +5,9 @@ class Destroyer():
         self.name = name
         self.hp = 1200
         self.armor = 200
-        self.armorPercent =100
+        if self.armor<0:
+            self.armor=0
+        self.armorPercent =200
         self.numberOfCanons = 4
         self.numberOfTorpedoes = 3
         self.selfDefense = 1
@@ -130,6 +132,7 @@ class Destroyer():
                                 print(
                                     "------------------------------------------------------------------------------------")
                             return breakedCanon
+
                 elif bullet == "TP":
                     print("DIRECT HIT SIR")
                     canonBreaked = Destroyer.CanonBreak(self)
@@ -144,6 +147,7 @@ class Destroyer():
                     print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                     print("------------------------------------------------------------------------------------")
                     return canonBreaked
+
                 elif bullet == "Nuce":
                     print("DIRECT HIT SIR")
                     canonBreaked = Destroyer.CanonBreak(self)

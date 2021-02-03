@@ -5,6 +5,8 @@ class Armored():
         self.name=name
         self.hp = 1600
         self.armor = 400
+        if self.armor<0:
+            self.armor=0
         self.armorPercent=400
         self.numberOfCanons = 8
         self.selfDefense = 2
