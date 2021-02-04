@@ -8,7 +8,7 @@ Bullets:
     TP (Torpedoes):
         Give enemy a "small" surprise they won't notice that their armor is gone.
     JR (Jericho-Missiles):
-        This weapon is simple just a rain of missiles :)
+        This weapon is simple, just a rain of missiles :)
     Nuce (Nuclear Missile):
         Perfect opportunity to end this war quickly ,but don't be fooled by
         the fact that it finishes quick.
