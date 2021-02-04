@@ -29,6 +29,8 @@ class Armored():
         else:
             return 0
         pass
+
+
     def ShipFire(self,round , breaked):
         i = 0
         while (i == 0):
