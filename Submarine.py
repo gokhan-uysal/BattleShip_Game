@@ -221,15 +221,19 @@ class Submarine():
                                 print((f"-{int(hp)}hp\n-{int(armor)} armor"))
 
                 elif bullet=="TP":
-                    print("DIRECT HIT SIR")
-                    if self.armor - armor < 0:
-                        self.hp -= (hp + armor - self.armor)
-                        print((f"-{int(hp + armor - self.armor)}hp\n-{int(self.armor)} armor"))
-                        self.armor = 0
+                    Chance = random.randrange(1, 10)
+                    if Chance == 1:
+                        print("MISS SIR")
                     else:
-                        self.hp -= hp
-                        self.armor -= armor
-                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                        print("DIRECT HIT SIR")
+                        if self.armor - armor < 0:
+                            self.hp -= (hp + armor - self.armor)
+                            print((f"-{int(hp + armor - self.armor)}hp\n-{int(self.armor)} armor"))
+                            self.armor = 0
+                        else:
+                            self.hp -= hp
+                            self.armor -= armor
+                            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
 
 
             else:
