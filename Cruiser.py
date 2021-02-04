@@ -47,7 +47,7 @@ class Cruiser():
                 hp = 275 * (self.numberOfCanons / (self.numberOfCanons + breaked))
                 i += 1
                 print(
-                    f"Firing HP shells with {self.numberOfCanons} out of {self.numberOfCanons} canons Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
+                    f"Firing HP shells with {self.numberOfCanons} out of {self.numberOfCanons+breaked} canons Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
                 self.numberOfCanons += breaked
                 print("------------------------------------------------------------------------------------")
                 return (int(hp), 0, "HP")
