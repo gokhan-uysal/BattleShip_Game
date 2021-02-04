@@ -59,6 +59,7 @@ class Submarine():
 
                         i += 1
                         return (int(hp), int(armor), "Nuce")
+
                     elif nuces.strip().lower() == "no":
                         bulletType = str(
                             input(f"Select the bullet type {self.name}:\nTP(Torpedoes) ,JR(Jericho Missile)"))
