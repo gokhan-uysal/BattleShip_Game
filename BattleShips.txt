@@ -65,7 +65,6 @@ Nuclear Submarine:
         *Can fire Torpedoes 6 times
             (Dealing AP bullet affect)
         *800 armor
-        *1X %100 hit chance using NR-50 radar systems
         *Deep dive
             (Can not avoid Torpedoes)
     Disadvantages:
