@@ -86,18 +86,22 @@ class Cruiser():
                         return canonBreaked
 
                 elif bullet == "TP":
-                    print("DIRECT HIT SIR")
-                    canonBreaked = Cruiser.CanonBreak(self)
-                    if self.armor-armor<0:
-                        self.hp-=(hp+armor-self.armor)
-                        print((f"-{int(hp+armor-self.armor)}hp\n-{self.armor} armor"))
-                        self.armor=0
+                    Chance = random.randrange(1, 6)
+                    if Chance == 1:
+                        print("MISS SIR")
                     else:
-                        self.hp -= hp
-                        self.armor -= armor
-                    print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
-                    print("------------------------------------------------------------------------------------")
-                    return canonBreaked
+                        print("DIRECT HIT SIR")
+                        canonBreaked = Cruiser.CanonBreak(self)
+                        if self.armor-armor<0:
+                            self.hp-=(hp+armor-self.armor)
+                            print((f"-{int(hp+armor-self.armor)}hp\n-{self.armor} armor"))
+                            self.armor=0
+                        else:
+                            self.hp -= hp
+                            self.armor -= armor
+                        print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                        print("------------------------------------------------------------------------------------")
+                        return canonBreaked
 
                 elif bullet == "Nuce":
                     if hp == 0:

@@ -217,14 +217,18 @@ class Destroyer():
                             return breakedCanon
 
                 elif bullet == "TP":
-                    print("DIRECT HIT SIR")
-                    canonBreaked = Destroyer.CanonBreak(self)
-                    self.armor = 0
-                    self.hp -= (hp + armor)
-                    print((f"-{int(hp + armor)}hp"))
-                    print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
-                    print("------------------------------------------------------------------------------------")
-                    return canonBreaked
+                    Chance = random.randrange(1, 8)
+                    if Chance == 1:
+                        print("MISS SIR")
+                    else:
+                        print("DIRECT HIT SIR")
+                        canonBreaked = Destroyer.CanonBreak(self)
+                        self.armor = 0
+                        self.hp -= (hp + armor)
+                        print((f"-{int(hp + armor)}hp"))
+                        print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                        print("------------------------------------------------------------------------------------")
+                        return canonBreaked
 
                 elif bullet == "Nuce":
                     print("DIRECT HIT SIR")

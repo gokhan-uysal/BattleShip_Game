@@ -225,16 +225,37 @@ class Submarine():
                     if Chance == 1:
                         print("MISS SIR")
                     else:
-                        print("DIRECT HIT SIR")
-                        if self.armor - armor < 0:
-                            self.hp -= (hp + armor - self.armor)
-                            print((f"-{int(hp + armor - self.armor)}hp\n-{int(self.armor)} armor"))
-                            self.armor = 0
-                        else:
-                            self.hp -= hp
-                            self.armor -= armor
-                            print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                        if self.selfDefense > 0:
+                            loop = 0
+                            while (loop == 0):
+                                Defense = str(input(f"Want to dive {-820}ft\n+{hp}hp +{armor} armor\n[YES/NO]"))
+                                if Defense.strip().lower()=="yes":
+                                    print("Ballast tanks are filled with water and ready to dive....")
+                                    self.selfDefense-=1
+                                    loop+=1
+                                    print(f"DIRECT HIT SIR\nHow did you graduated from military Captain {self.name.capitalize()}!!")
+                                    if self.armor - armor < 0:
+                                        self.hp -= (hp + armor - self.armor)
+                                        print((f"-{int(hp + armor - self.armor)}hp\n-{int(self.armor)} armor"))
+                                        self.armor = 0
+                                    else:
+                                        self.hp -= hp
+                                        self.armor -= armor
+                                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
 
+                                elif Defense.strip().lower()=="no":
+                                    loop+=1
+                                    print("DIRECT HIT SIR")
+                                    if self.armor - armor < 0:
+                                        self.hp -= (hp + armor - self.armor)
+                                        print((f"-{int(hp + armor - self.armor)}hp\n-{int(self.armor)} armor"))
+                                        self.armor = 0
+                                    else:
+                                        self.hp -= hp
+                                        self.armor -= armor
+                                        print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                                else:
+                                    print("Waiting for your order....")
 
             else:
                 self.armor=0
@@ -254,19 +275,41 @@ class Submarine():
                                 elif Defense.strip().lower()=="no":
                                     print("DIRECT HIT SIR")
                                     self.hp-=(hp+armor)
-                                    print(f"-{int(hp)}hp\n-{int(armor)} armor")
+                                    print(f"-{int(hp+armor)}hp")
                                     loop+=1
                                 else:
                                     print("Waiting for your order....")
                         else:
                             print("DIRECT HIT SIR")
                             self.hp -= (hp+armor)
-                            print(f"-{int(hp)}hp\n-{int(armor)} armor")
+                            print(f"-{int(hp+armor)}hp")
 
                 elif bullet == "TP":
-                    print("DIRECT HIT SIR")
-                    self.hp -= (hp+armor)
-                    print(f"-{int(hp)}hp\n-{int(armor)} armor")
+                    Chance = random.randrange(1, 10)
+                    if Chance == 1:
+                        print("MISS SIR")
+                    else:
+                        print("DIRECT HIT SIR")
+                        if self.selfDefense > 0:
+                            loop = 0
+                            while (loop == 0):
+                                Defense = str(input(f"Want to dive {-820}ft\n+{hp}hp +{armor} armor\n[YES/NO]"))
+                                if Defense.strip().lower()=="yes":
+                                    print("Ballast tanks are filled with water and ready to dive....")
+                                    self.selfDefense-=1
+                                    loop+=1
+                                    print(f"DIRECT HIT SIR\nHow did you graduated from military Captain {self.name.capitalize()}!!")
+                                    self.hp -= (hp + armor)
+                                    print(f"-{int(hp+armor)}hp")
+
+                                elif Defense.strip().lower()=="no":
+                                    loop+=1
+                                    print("DIRECT HIT SIR")
+                                    self.hp -= (hp + armor)
+                                    print(f"-{int(hp+armor)}hp")
+                                else:
+                                    print("Waiting for your order....")
+
 
         print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
         print("------------------------------------------------------------------------------------")
