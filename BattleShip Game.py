@@ -1,4 +1,4 @@
-import random, os, Greeting , pygame , sys
+import random, Greeting
 from Destroyer import Destroyer
 from Cruiser import Cruiser
 from Armored import Armored
