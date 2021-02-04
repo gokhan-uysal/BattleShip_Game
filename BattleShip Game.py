@@ -78,6 +78,14 @@ def main():
         if ROUND==1:
             print(f"~ROUND{ROUND}~")
             hp1, armor1, AMMUNATION = Ship1.ShipFire(ROUND , 0 )
+            if Ship1.hp <= 0:
+                print(f"Captain {Ship2.name} is the ruler of the seas\nTHE END")
+                ROUND = -1
+                break
+            elif Ship2.hp <= 0:
+                print(f"Captain {Ship1.name} is the ruler of the seas\nTHE END")
+                ROUND = -1
+                break
             breakCanon1 = Ship2.ShipDefense(hp1, armor1, ROUND, AMMUNATION)
             if Ship1.hp <= 0:
                 print(f"Captain {Ship2.name} is the ruler of the seas\nTHE END")
@@ -88,6 +96,14 @@ def main():
                 ROUND = -1
                 break
             hp2, armor2, AMMUNATION2 = Ship2.ShipFire(ROUND , breakCanon1)
+            if Ship1.hp <= 0:
+                print(f"Captain {Ship2.name} is the ruler of the seas\nTHE END")
+                ROUND = -1
+                break
+            elif Ship2.hp <= 0:
+                print(f"Captain {Ship1.name} is the ruler of the seas\nTHE END")
+                ROUND = -1
+                break
             breakCanon2 = Ship1.ShipDefense(hp2, armor2, ROUND, AMMUNATION2)
             if Ship1.hp <= 0:
                 print(f"Captain {Ship2.name} is the ruler of the seas\nTHE END")

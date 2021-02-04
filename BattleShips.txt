@@ -68,6 +68,6 @@ Nuclear Submarine:
         *Deep dive
             (Can not avoid Torpedoes)
     Disadvantages:
-        *400 health
+        *350 health
         *No additional canons
 ------------------------------------------------------------------------------------

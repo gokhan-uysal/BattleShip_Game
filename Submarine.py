@@ -2,6 +2,7 @@ import random
 class Submarine():
     def __init__(self, name):
         self.name=name
+        self.type="Submarine"
         self.hp = 350
         self.armor = 800
         if self.armor<0:
@@ -45,14 +46,14 @@ class Submarine():
                         print(
                             "------------------------------------------------------------------------------------")
                         self.numberOfNuces -= 1
-                        chance = random.randrange(1, 11)
-                        if chance == 10:
+                        chance = random.randrange(1, 6)
+                        if chance == 2:
                             hp = 0
                             armor = 0
-                            self.hp -= 50
-                            self.armor -= 150
+                            self.hp -= 500
+                            self.armor -= 500
                             print(
-                                f"Fuck! Captain our Nuclear Missile explode unexpectedly\n{self.type}: {-500}hp {-500} armor")
+                                f"Fuck! Captain our Nuclear Missile explode unexpectedly\n{self.name}'s {self.type}: {-500}hp {-500} armor")
                             print(
                                 "------------------------------------------------------------------------------------")
 
