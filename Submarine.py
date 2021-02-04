@@ -2,7 +2,7 @@ import random
 class Submarine():
     def __init__(self, name):
         self.name=name
-        self.hp = 500
+        self.hp = 350
         self.armor = 800
         if self.armor<0:
             self.armor=0
