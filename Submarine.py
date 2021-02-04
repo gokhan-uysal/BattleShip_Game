@@ -63,7 +63,7 @@ class Submarine():
                             input(f"Select the bullet type {self.name}:\nTP(Torpedoes) ,JR(Jericho Missile)"))
                         if bulletType.strip().upper() == "TP":
                             self.numberOfTorpedoes -= 1
-                            hit = 300
+                            hit = 250
                             percent = random.randrange(0, 45) / 100
                             hp, armor = hit * percent, hit * (1 - percent)
                             i += 1
@@ -74,7 +74,7 @@ class Submarine():
                             return (int(hp), int(armor), "TP")
                         elif bulletType.strip().upper() == "JR":
                             self.numberOfJericho -= 1
-                            hit = 400
+                            hit = 350
                             hp = hit
                             i += 1
                             print(
@@ -88,7 +88,7 @@ class Submarine():
                     if self.numberOfJericho <= 0 and self.numberOfTorpedoes > 0:
                         print("Sir we are out of Jericho Missiles")
                         self.numberOfTorpedoes -= 1
-                        hit = 300
+                        hit = 250
                         percent = random.randrange(0, 45) / 100
                         hp, armor = hit * percent, hit * (1 - percent)
                         i += 1
@@ -100,7 +100,7 @@ class Submarine():
                     elif self.numberOfTorpedoes <= 0 and self.numberOfJericho > 0:
                         print("Sir we are out of Torpedoes")
                         self.numberOfJericho -= 1
-                        hit = 400
+                        hit = 350
                         hp = hit
                         i += 1
                         print(
@@ -118,7 +118,7 @@ class Submarine():
             if self.numberOfJericho <= 0 and self.numberOfTorpedoes > 0:
                 print("Sir we can't launch Jericho Missiles")
                 self.numberOfTorpedoes -= 1
-                hit = 300
+                hit = 250
                 percent = random.randrange(0, 45) / 100
                 hp, armor = hit * percent, hit * (1 - percent)
                 print(
@@ -130,7 +130,7 @@ class Submarine():
             elif self.numberOfTorpedoes <= 0 and self.numberOfJericho > 0:
                 print("Sir we are out of Torpedoes")
                 self.numberOfJericho -= 1
-                hit = 400
+                hit = 350
                 hp = hit
                 print(
                     f"Firing Jericho Missiles out of {self.numberOfJericho} Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
@@ -146,7 +146,7 @@ class Submarine():
                 bulletType = str(input(f"Select the bullet type {self.name}:\nTP(Torpedoes) ,JR(Jericho Missile)"))
                 if bulletType.strip().upper() == "TP":
                     self.numberOfTorpedoes -= 1
-                    hit = 300
+                    hit = 250
                     percent = (random.randrange(1, 41) / 100)
                     hp, armor = hit * percent, hit * (1 - percent)
                     i += 1
@@ -158,7 +158,7 @@ class Submarine():
 
                 elif bulletType.strip().upper() == "JR":
                     self.numberOfJericho -= 1
-                    hit = 400
+                    hit = 350
                     hp = hit
                     i += 1
                     print(
