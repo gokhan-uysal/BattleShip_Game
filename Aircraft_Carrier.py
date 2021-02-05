@@ -47,6 +47,20 @@ class AircraftCarrier():
                     return int(number)
         pass
 
+    def Location(self):
+        loop=0
+        while (loop==0):
+            number=input(f"Select air strike coordinates Captain {self.name}")
+            if number.isalpha():
+                print(f"Sir {number} is not a number")
+            else:
+                if 0> int(number) > 9:
+                    print(f"Sir {int(number)} is out of map")
+                else:
+                    loop += 1
+                    return int(number)
+        pass
+
     def ShipFire(self ,round , breaked):
         i=0
         self.numberOfAirStrike-=breaked
@@ -59,36 +73,45 @@ class AircraftCarrier():
                     print("Ready to take off")
                     print(f"Lifting B-2A Spirit Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
                     print("------------------------------------------------------------------------------------")
-                    return (int(hp), 0, "ST")
+                    return (int(hp), 0, "ST" , 0)
 
                 elif craftSelect.upper().strip()=="A2":
+                    f=open("Carrier Air Strike Map" , "r")
+                    print(f.read())
+                    Location=AircraftCarrier.Location(self)
                     number=AircraftCarrier.AircraftCount(self)
                     print(f"All {number}/{self.numberOfAirStrike} ready to take off!")
+                    print(f"TARGET: {Location}")
                     hit = number * 30
                     percent = random.randrange(1, 41) / 100
                     hp, armor = hit * percent, hit * (1 - percent)
                     self.numberOfAirStrike-=number
                     print(f"Lifting A-10 Thunderbolt II Captain {self.name}.\nHopping to deal {int(hp+armor)} damage to the enemy ship!!")
                     print("------------------------------------------------------------------------------------")
-                    return (int(hp) , int(armor) , "A2")
+                    return (int(hp) , int(armor) , "A2" ,Location )
 
             elif self.numberOfStealth<=0:
+                f = open("Carrier Air Strike Map", "r")
+                print(f.read())
+                Location = AircraftCarrier.Location(self)
                 number = AircraftCarrier.AircraftCount(self)
                 print(f"All {number}/{self.numberOfAirStrike} ready to take off!")
+                print(f"TARGET: {Location}")
                 hit = number * 30
                 percent = random.randrange(1, 41) / 100
                 hp, armor = hit * percent, hit * (1 - percent)
                 self.numberOfAirStrike -= number
-                print(f"Lifting A-10 Thunderbolt II Captain {self.name}.\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
+                print(
+                    f"Lifting A-10 Thunderbolt II Captain {self.name}.\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
                 print("------------------------------------------------------------------------------------")
-                return (int(hp), int(armor), "A2")
+                return (int(hp), int(armor), "A2", Location)
 
             elif self.numberOfStealth<=0 and self.numberOfAirStrike<=0:
                 print(f"It was a pleasure to serve you sir {self.name}")
                 print("------------------------------------------------------------------------------------")
         pass
 
-    def ShipDefense(self, hp, armor, round, bullet):
+    def ShipDefense(self, hp, armor, round, bullet ):
         if hp == 0 and armor == 0:
             print("THIS IS OUR CHANCE")
         else:
