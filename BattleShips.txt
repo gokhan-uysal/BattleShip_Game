@@ -47,7 +47,7 @@ Armored:
         *400 armor
         *1600 health
         *8 canons
-            (Max damage = 300)
+            (Max damage = 400)
         *2 type of bullet HP & AP
             (High-Spreader and Armor Piercing shells)
         * 2X Missile defense system: SeaRAM
