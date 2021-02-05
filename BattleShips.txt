@@ -18,7 +18,7 @@ Missiles:
 Aircrafts:
     ST (B-2A Spirit):
         This craft cannot seen by anything but the eye.
-     A2 (A-10 Thunderbolt II):
+    A2 (A-10 Thunderbolt II):
         A plane whose sound comes before it, how bad could it be.
 ------------------------------------------------------------------------------------
 Destroyer (USS Arleigh Burke):

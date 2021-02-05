@@ -111,7 +111,7 @@ class AircraftCarrier():
                 print("------------------------------------------------------------------------------------")
         pass
 
-    def ShipDefense(self, hp, armor, round, bullet ):
+    def ShipDefense(self, hp, armor, round, bullet ,  location):
         if hp == 0 and armor == 0:
             print("THIS IS OUR CHANCE")
         else:

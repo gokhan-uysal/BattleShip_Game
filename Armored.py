@@ -10,6 +10,21 @@ class Armored():
         self.armorPercent=400
         self.numberOfCanons = 8
         self.selfDefense = 2
+        self.Location = 0
+        pass
+
+    def Location(self):
+        loop = 0
+        while (loop == 0):
+            number = input(f"Select your position Captain {self.name}")
+            if number.isalpha():
+                print(f"Sir {number} is not a number")
+            else:
+                if 0 > int(number) > 9:
+                    print(f"Sir {int(number)} is out of map")
+                else:
+                    loop += 1
+                    return int(number)
         pass
 
     def CanonBreak(self):
@@ -61,7 +76,7 @@ class Armored():
             return (0, 0, "NONE")
         pass
 
-    def ShipDefense(self, hp, armor, round, bullet , location):
+    def ShipDefense(self, hp, armor, round, bullet , location=0):
         if hp == 0 and armor==0:
             print("THIS IS OUR CHANCE")
         else:
@@ -188,6 +203,32 @@ class Armored():
                         print("------------------------------------------------------------------------------------")
                         return canonBreaked
 
+                elif bullet == "ST" or bullet == "A2":
+                    CurrentLocation = Armored.Location(self)
+                    if CurrentLocation == location:
+                        print("DIRECT HIT SIR")
+                        canonBreaked = Armored.CanonBreak(self)
+                        if bullet == "ST":
+                            self.hp -= hp * (1 - ((self.armor / 1.5) / self.armorPercent))
+                            print((f"-{int(hp * (1 - ((self.armor / 1.5) / self.armorPercent)))}hp"))
+                            print(
+                                f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
+                            print(
+                                "------------------------------------------------------------------------------------")
+
+                        elif bullet == "A2":
+                            if self.armor - armor < 0:
+                                self.hp -= (hp + armor - self.armor)
+                                print((f"-{int((hp + armor - self.armor))}hp\n-{self.armor} armor"))
+                                self.armor = 0
+                            else:
+                                self.hp -= hp
+                                self.armor -= armor
+                                print((f"-{int((hp))}hp\n-{int(armor)} armor"))
+
+                        return canonBreaked
+                    else:
+                        print("MISS SIR")
 
             else:
                 self.armor = 0
@@ -281,6 +322,21 @@ class Armored():
                         print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                         print("------------------------------------------------------------------------------------")
                         return canonBreaked
+                elif bullet == "ST" or bullet == "A2":
+                    CurrentLocation = Armored.Location(self)
+                    if CurrentLocation == location:
+                        print("DIRECT HIT SIR")
+                        canonBreaked = Armored.CanonBreak(self)
+                        self.armor = 0
+                        self.hp -= (hp + armor)
+                        print((f"-{int(hp + armor)}hp"))
+                        print(
+                            f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
+                        print("------------------------------------------------------------------------------------")
+                        return canonBreaked
+
+                    else:
+                        print("MISS SIR")
 
         print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
         print("------------------------------------------------------------------------------------")
