@@ -5,9 +5,9 @@ from Armored import Armored
 from Submarine import Submarine
 from Aircraft_Carrier import AircraftCarrier
 
-"""
+
 nameList = ["Gökhan","Suhan"]
-typeList = ["Cruiser","Armored"]
+typeList = ["Cruiser","Carrier"]
 
 
 """
@@ -16,7 +16,7 @@ nameList = []
 typeList = []
 
 def Intro(index):
-    ShipList = ("Destroyer", "Cruiser", "Armored", "Submarine")
+    ShipList = ("Destroyer", "Cruiser", "Armored", "Submarine" , "Carrier")
     if index == 1:
         print("Welcome to World of Warships")
         Greeting.Greetings("Captains")
@@ -53,7 +53,7 @@ for i in range(1, 3):
     typeList.append(type)
 print("Now Let's Start The Battle")
 print("------------------------------------------------------------------------------------")
-
+"""
 
 def main():
     if typeList[0]=="Destroyer":
@@ -64,6 +64,8 @@ def main():
         Ship1 = Armored(nameList[0])
     elif typeList[0]=="Submarine":
         Ship1 = Submarine(nameList[0])
+    elif typeList[0]=="Carrier":
+        Ship1 = AircraftCarrier(nameList[0])
 
     if typeList[1] == "Destroyer":
         Ship2 = Destroyer(nameList[1])
@@ -73,6 +75,8 @@ def main():
         Ship2 = Armored(nameList[1])
     elif typeList[1] == "Submarine":
         Ship2 = Submarine(nameList[1])
+    elif typeList[1]=="Carrier":
+        Ship2 = AircraftCarrier(nameList[1])
 
     ROUND = 1
     while not Ship1.hp <= 0 or not Ship2.hp <= 0 and not ROUND <= 0:

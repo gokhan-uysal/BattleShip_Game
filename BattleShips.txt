@@ -7,11 +7,19 @@ Bullets:
         other way around you will proud of this shell.
     TP (Torpedoes):
         Give enemy a "small" surprise they won't notice that their armor is gone.
+
+Missiles:
     JR (Jericho-Missiles):
         This weapon is simple, just a rain of missiles :)
     Nuce (Nuclear Missile):
         Perfect opportunity to end this war quickly ,but don't be fooled by
         the fact that it finishes quick.
+
+Aircrafts:
+    ST (B-2A Spirit):
+        This craft cannot seen by anything but the eye.
+     A2 (A-10 Thunderbolt II):
+        A plane whose sound comes before it, how bad could it be.
 ------------------------------------------------------------------------------------
 Destroyer (USS Arleigh Burke):
     Advantages:
@@ -59,7 +67,8 @@ Armored (USS Zumwalt):
 Nuclear Submarine (Sea Wolf):
     Advantages:
         *Can fire Nuclear Missiles 1 times:
-            (Dealing high AP & HP damage) (Max damage = 1000) (Until round 7 you can not launch Nuclear Missiles) (Takes 2 round to reach his target)
+            (Dealing high AP & HP damage) (Max damage = 1000)
+            (Until round 7 you can not launch Nuclear Missiles) (Takes 2 round to reach his target)
         *Can fire Jericho Missiles 3 times
             (Dealing high HP damage) (Max damage = 500) (Only every 2 rounds)
         *Can fire Torpedoes 6 times
@@ -74,8 +83,17 @@ Nuclear Submarine (Sea Wolf):
 Aircraft Carrier (USS Gerald R. Ford):
     Advantages:
         * 1X stealth capable aircraft (B-2A Spirit)
-            (Dealing low AP & HP damage but permanent for 3 rounds)
+            (Dealing low HP damage but permanent for 3 rounds)
+            (Don't need to choose booming location it can found it)
         *Can send aircraft to enemy ships (A-10 Thunderbolt II)
+            (Dealing AP & HP damage)
+            (Aircraft carrier can send 5 planes )
+            (Aircraft carrier can take 30 planes in surface and if it get hits, planes can explode)
+            (This type of plane is ready to defend his carrier)
         * 1X Self defense system: Phalanx CIWS
             (HP & AP bullet only)
+    Disadvantages:
+        *300 health
+        *500 armor
+        *Choosing booming location from 3x3 matrix
 ------------------------------------------------------------------------------------
