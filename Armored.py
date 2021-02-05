@@ -63,7 +63,7 @@ class Armored():
 
     def ShipDefense(self, hp, armor, round, bullet):
         if hp == 0 and armor==0:
-            print("MISS SIR")
+            print("THIS IS OUR CHANCE")
         else:
             if self.armor  > 0:
                 if bullet == "AP" or bullet == "HP":
@@ -86,8 +86,8 @@ class Armored():
                             print(
                                 "------------------------------------------------------------------------------------")
                         else:
-                            self.hp -= hp * (1 - ((self.armor/1.2) / self.armorPercent))
-                            print((f"-{int(hp * (1 - ((self.armor/1.2) / self.armorPercent)))}hp"))
+                            self.hp -= hp * (1 - ((self.armor/1.3) / self.armorPercent))
+                            print((f"-{int(hp * (1 - ((self.armor/1.3) / self.armorPercent)))}hp"))
                             print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                             print("------------------------------------------------------------------------------------")
                         return canonBreaked

@@ -18,15 +18,15 @@ class AircraftCarrier():
     def AircraftBreak(self):
         Chance = random.randrange(0, 21)
         if Chance == 10:
-            self.numberOfCanons -= 7
-            print("Shit! Captain we lost 5 aircraft")
+            self.numberOfAirStrike -= 5
+            print("Shit! Captain we lost 5 aircrafts")
             return 5
         elif Chance == 5 or Chance == 10 or Chance == 15 or Chance == 20:
-            self.numberOfCanons -= 2
-            print("Oh! Captain we lost 2 aircraft")
+            self.numberOfAirStrike -= 2
+            print("Oh! Captain we lost 2 aircrafts")
             return 2
         elif Chance == 2 or Chance == 4 or Chance == 6 or Chance == 8 or Chance == 10:
-            self.numberOfCanons -= 1
+            self.numberOfAirStrike -= 1
             print("Captain we lost 1 aircraft")
             return 1
         else:
@@ -36,12 +36,15 @@ class AircraftCarrier():
     def AircraftCount(self):
         loop=0
         while (loop==0):
-            number=int(input("How many aircraft are you going to lift [0-5]"))
-            if number>5:
-                print("Sir we have 5 take-off ramps")
+            number=input("How many aircraft are you going to lift [0-5]")
+            if number.isalpha():
+                print(f"Sir {number} is not a number")
             else:
-                loop+=1
-                return number
+                if int(number)>5:
+                    print("Sir we have 5 take-off ramps")
+                else:
+                    loop+=1
+                    return int(number)
         pass
 
     def ShipFire(self ,round , breaked):
@@ -60,7 +63,7 @@ class AircraftCarrier():
 
                 elif craftSelect.upper().strip()=="A2":
                     number=AircraftCarrier.AircraftCount(self)
-                    print(f"All {number} ready to take off!")
+                    print(f"All {number}/{self.numberOfAirStrike} ready to take off!")
                     hit = number * 30
                     percent = random.randrange(1, 41) / 100
                     hp, armor = hit * percent, hit * (1 - percent)
@@ -71,7 +74,7 @@ class AircraftCarrier():
 
             elif self.numberOfStealth<=0:
                 number = AircraftCarrier.AircraftCount(self)
-                print(f"All {number} ready to take off!")
+                print(f"All {number}/{self.numberOfAirStrike} ready to take off!")
                 hit = number * 30
                 percent = random.randrange(1, 41) / 100
                 hp, armor = hit * percent, hit * (1 - percent)
@@ -92,7 +95,7 @@ class AircraftCarrier():
             if self.armor > 0:
                 if bullet == "AP" or bullet == "HP":
                     chance = random.randrange(1, 11)
-                    if chance == 1 or chance == 2 or chance == 3 or chance == 4:
+                    if chance == 1 or chance == 2 or chance == 3:
                         print("MISS SIR")
                     else:
                         if self.selfDefense > 0:
@@ -104,7 +107,7 @@ class AircraftCarrier():
                                     self.selfDefense -= 1
                                     loop += 1
                                 elif Defense.lower().strip() == "no":
-                                    aircraftBreak=AircraftCarrier.AircraftBreak()
+                                    aircraftBreak=AircraftCarrier.AircraftBreak(self)
                                     print("DIRECT HIT SIR")
                                     if bullet=="AP":
                                         if self.armor-armor<0:
@@ -122,9 +125,9 @@ class AircraftCarrier():
                                             "------------------------------------------------------------------------------------")
 
                                     else:
-                                        self.hp -= hp*(1-((self.armor/1.5)/self.armorPercent))
+                                        self.hp -= hp*(1-((self.armor/1.2)/self.armorPercent))
                                         loop+=1
-                                        print((f"-{int(hp*(1-((self.armor/1.5)/self.armorPercent)))}hp"))
+                                        print((f"-{int(hp*(1-((self.armor/1.2)/self.armorPercent)))}hp"))
                                         print(
                                             f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                                         print(
@@ -134,7 +137,7 @@ class AircraftCarrier():
                                     print("Waiting for your order....")
                         else:
                             print("DIRECT HIT SIR")
-                            aircraftBreak = AircraftCarrier.AircraftBreak()
+                            aircraftBreak=AircraftCarrier.AircraftBreak(self)
                             if bullet == "AP":
                                 if self.armor - armor < 0:
                                     self.hp -= (hp+armor-self.armor)
