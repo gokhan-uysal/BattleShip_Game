@@ -13,7 +13,7 @@ Bullets:
         Perfect opportunity to end this war quickly ,but don't be fooled by
         the fact that it finishes quick.
 ------------------------------------------------------------------------------------
-Destroyer:
+Destroyer (USS Arleigh Burke):
     Advantages:
         *Can shoot every round
         *Can fire Torpedoes 3 times
@@ -28,7 +28,7 @@ Destroyer:
         *1 type of bullet HP
             (High-Spreader shell)
 
-Cruisers:
+Cruisers (USS Antietam):
     Advantages:
         *Can shoot every round
         *2 type of bullet HP & AP
@@ -42,7 +42,7 @@ Cruisers:
         *High hit chance %70
         *300 armor
 
-Armored:
+Armored (USS Zumwalt):
     Advantages:
         *400 armor
         *1600 health
@@ -56,7 +56,7 @@ Armored:
         *Can shoot every 2 rounds
         *Very high hit chance %80
 
-Nuclear Submarine:
+Nuclear Submarine (Sea Wolf):
     Advantages:
         *Can fire Nuclear Missiles 1 times:
             (Dealing high AP & HP damage) (Max damage = 1000) (Until round 7 you can not launch Nuclear Missiles) (Takes 2 round to reach his target)
@@ -70,4 +70,12 @@ Nuclear Submarine:
     Disadvantages:
         *350 health
         *No additional canons
+
+Aircraft Carrier (USS Gerald R. Ford):
+    Advantages:
+        * 1X stealth capable aircraft (B-2A Spirit)
+            (Dealing low AP & HP damage but permanent for 3 rounds)
+        *Can send aircraft to enemy ships (A-10 Thunderbolt II)
+        * 1X Self defense system: Phalanx CIWS
+            (HP & AP bullet only)
 ------------------------------------------------------------------------------------
