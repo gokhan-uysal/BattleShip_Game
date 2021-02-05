@@ -201,8 +201,6 @@ class Submarine():
                                             self.hp -= hp
                                             self.armor -= armor
                                             print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-                                        self.hp -= hp
-                                        self.armor -= armor
                                         loop += 1
                                     else:
                                         self.hp -= hp * (1 - ((self.armor/1.1) / self.armorPercent))
