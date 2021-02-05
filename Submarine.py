@@ -311,7 +311,7 @@ class Submarine():
                                     print("Waiting for your order....")
 
 
-        print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+        print(f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor ,  {self.numberOfTorpedoes} tp and {self.numberOfJericho} jericho left.")
         print("------------------------------------------------------------------------------------")
         return 0
         pass

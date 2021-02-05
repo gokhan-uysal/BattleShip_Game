@@ -95,7 +95,7 @@ class Destroyer():
                                             self.armor-=armor
                                             print((f"-{int((hp))}hp\n-{int(armor)} armor"))
                                         print(
-                                            f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                                            f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
                                         print(
                                             "------------------------------------------------------------------------------------")
 
@@ -104,7 +104,7 @@ class Destroyer():
                                         loop+=1
                                         print((f"-{int(hp*(1-((self.armor/1.5)/self.armorPercent)))}hp"))
                                         print(
-                                            f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                                            f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
                                         print(
                                             "------------------------------------------------------------------------------------")
                                     return breakedCanon
@@ -123,14 +123,14 @@ class Destroyer():
                                     self.armor -= armor
                                     print((f"-{int((hp))}hp\n-{int(armor)} armor"))
                                 print(
-                                    f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                                    f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
                                 print(
                                     "------------------------------------------------------------------------------------")
                             else:
                                 self.hp -= hp*(1-((self.armor/1.5)/self.armorPercent))
                                 print((f"-{int(hp*(1-((self.armor/1.5)/self.armorPercent)))}hp"))
                                 print(
-                                    f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                                    f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
                                 print(
                                     "------------------------------------------------------------------------------------")
                             return breakedCanon
@@ -150,7 +150,8 @@ class Destroyer():
                             self.hp -= hp
                             self.armor -= armor
                             print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-                        print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                        print(
+                            f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
                         print("------------------------------------------------------------------------------------")
                         return canonBreaked
 
@@ -164,7 +165,8 @@ class Destroyer():
                         self.hp -= hp
                         self.armor = 0
                         print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-                    print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                    print(
+                        f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
                     print("------------------------------------------------------------------------------------")
                     return canonBreaked
                 elif bullet == "JR":
@@ -174,7 +176,8 @@ class Destroyer():
                     self.hp -= hp
                     self.armor -= armor
                     print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-                    print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                    print(
+                        f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
                     print("------------------------------------------------------------------------------------")
                     return canonBreaked
 
@@ -200,7 +203,7 @@ class Destroyer():
                                     loop += 1
                                     print((f"-{int(hp + armor)}hp"))
                                     print(
-                                        f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                                        f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
                                     print(
                                         "------------------------------------------------------------------------------------")
                                     return breakedCanon
@@ -212,7 +215,8 @@ class Destroyer():
                             self.armor = 0
                             self.hp -= (hp + armor)
                             print((f"-{int(hp + armor)}hp"))
-                            print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                            print(
+                                f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
                             print(
                                 "------------------------------------------------------------------------------------")
                             return breakedCanon
@@ -227,7 +231,8 @@ class Destroyer():
                         self.armor = 0
                         self.hp -= (hp + armor)
                         print((f"-{int(hp + armor)}hp"))
-                        print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                        print(
+                            f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
                         print("------------------------------------------------------------------------------------")
                         return canonBreaked
 
@@ -237,7 +242,8 @@ class Destroyer():
                     self.hp -= hp
                     self.armor = 0
                     print((f"-{int(hp)}hp\n-{int(armor)} armor"))
-                    print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                    print(
+                        f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
                     print("------------------------------------------------------------------------------------")
                     return canonBreaked
 
@@ -248,7 +254,8 @@ class Destroyer():
                     hp = hp * (random.randrange(50, 61) / 100)
                     self.hp -= (hp + armor)
                     print((f"-{int(hp + armor)}hp"))
-                    print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+                    print(
+                        f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
                     print("------------------------------------------------------------------------------------")
                     return canonBreaked
         print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
