@@ -26,7 +26,7 @@ class Destroyer():
             return 0
         pass
 
-    def ShipFire(self,round , breaked):
+    def ShipFire(self, round , breaked):
         i = 0
         while (i == 0):
             if self.numberOfTorpedoes <= 0:
@@ -59,12 +59,13 @@ class Destroyer():
                         f"Firing 1 Torpedoes out of {self.numberOfTorpedoes} Captain {self.name}\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
                     print("------------------------------------------------------------------------------------")
                     return (int(hp), int(armor), "TP")
+
         pass
 
 
     def ShipDefense(self, hp, armor, round, bullet):
         if hp == 0 and armor == 0:
-            print("MISS SIR")
+            print("THIS IS OUR CHANCE")
         else:
             if self.armor > 0:
                 if bullet == "AP" or bullet == "HP":

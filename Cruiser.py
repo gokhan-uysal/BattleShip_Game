@@ -56,7 +56,7 @@ class Cruiser():
 
     def ShipDefense(self, hp, armor, round, bullet):
         if hp == 0 and armor == 0:
-            print("MISS SIR")
+            print("THIS IS OUR CHANCE")
         else:
             if self.armor > 0:
                 if bullet == "AP" or bullet == "HP":

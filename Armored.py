@@ -10,8 +10,8 @@ class Armored():
         self.armorPercent=400
         self.numberOfCanons = 8
         self.selfDefense = 2
-        self.Round = 0
         pass
+
     def CanonBreak(self):
         Chance = random.randrange(0, 21)
         if Chance == 10:
@@ -30,30 +30,36 @@ class Armored():
             return 0
         pass
 
-
     def ShipFire(self,round , breaked):
-        i = 0
-        while (i == 0):
-            bulletType = str(input(f"Select the bullet type {self.name}:\nAP(Armor-Piercing) ,HP(High-Spreader)"))
-            if bulletType.upper() == "AP":
-                hit = 300 * (self.numberOfCanons / (self.numberOfCanons+breaked))
-                percent = random.randrange(1, 41) / 100
-                hp, armor = hit * percent, hit * (1 - percent)
-                i += 1
-                print(
-                    f"Firing AP shells with {self.numberOfCanons} out of {self.numberOfCanons+breaked} canons Captain {self.name}.\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
-                print("------------------------------------------------------------------------------------")
-                self.numberOfCanons += breaked
-                return (int(hp), int(armor), "AP")
+        if round % 2 ==1:
+            i = 0
+            while (i == 0):
+                bulletType = str(input(f"Select the bullet type {self.name}:\nAP(Armor-Piercing) ,HP(High-Spreader)"))
+                if bulletType.upper() == "AP":
+                    hit = 300 * (self.numberOfCanons / (self.numberOfCanons+breaked))
+                    percent = random.randrange(1, 41) / 100
+                    hp, armor = hit * percent, hit * (1 - percent)
+                    i += 1
+                    print(
+                        f"Firing AP shells with {self.numberOfCanons} out of {self.numberOfCanons+breaked} canons Captain {self.name}.\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
+                    print("------------------------------------------------------------------------------------")
+                    self.numberOfCanons += breaked
+                    return (int(hp), int(armor), "AP")
 
-            elif bulletType.upper() == "HP":
-                hp = 325 * (self.numberOfCanons / (self.numberOfCanons+breaked))
-                i += 1
-                print(
-                    f"Firing HP shells with {self.numberOfCanons} out of {self.numberOfCanons+breaked} canons Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
-                print("------------------------------------------------------------------------------------")
-                self.numberOfCanons += breaked
-                return (int(hp), 0, "HP")
+
+                elif bulletType.upper() == "HP":
+                    hp = 325 * (self.numberOfCanons / (self.numberOfCanons+breaked))
+                    i += 1
+                    print(
+                        f"Firing HP shells with {self.numberOfCanons} out of {self.numberOfCanons+breaked} canons Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
+                    print("------------------------------------------------------------------------------------")
+                    self.numberOfCanons += breaked
+                    return (int(hp), 0, "HP")
+        else:
+            print("RELOADING SIR.......")
+            print("------------------------------------------------------------------------------------")
+            return (0, 0, "NONE")
+        pass
 
     def ShipDefense(self, hp, armor, round, bullet):
         if hp == 0 and armor==0:
