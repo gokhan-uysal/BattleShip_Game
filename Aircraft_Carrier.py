@@ -13,7 +13,7 @@ class AircraftCarrier():
         self.numberOfAirStrike=30
         self.selfDefense = 1
         self.numberOfStealth=1
-        self.location=0
+        self.Location=0
         if self.Location==0:
             AircraftCarrier.CurrentLocation(self)
         pass

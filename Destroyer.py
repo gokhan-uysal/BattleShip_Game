@@ -214,6 +214,7 @@ class Destroyer():
                                 self.hp -= hp
                                 self.armor -= armor
                                 print((f"-{int((hp))}hp\n-{int(armor)} armor"))
+                            return canonBreaked
                         else:
                             print("MISS SIR")
 
@@ -225,7 +226,7 @@ class Destroyer():
                             f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
                         print(
                             "------------------------------------------------------------------------------------")
-                    return canonBreaked
+                        return canonBreaked
 
             else:
                 if bullet == "AP" or bullet == "HP":

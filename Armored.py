@@ -207,20 +207,12 @@ class Armored():
                         print("------------------------------------------------------------------------------------")
                         return canonBreaked
 
-                elif bullet == "ST" or bullet == "A2":
-                    CurrentLocation = Armored.Location(self)
-                    if CurrentLocation == location:
-                        print("DIRECT HIT SIR")
-                        canonBreaked = Armored.CanonBreak(self)
-                        if bullet == "ST":
-                            self.hp -= hp * (1 - ((self.armor / 1.5) / self.armorPercent))
-                            print((f"-{int(hp * (1 - ((self.armor / 1.5) / self.armorPercent)))}hp"))
-                            print(
-                                f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor.")
-                            print(
-                                "------------------------------------------------------------------------------------")
 
-                        elif bullet == "A2":
+                elif bullet == "ST" or bullet == "A2":
+                    if bullet == "A2":
+                        if self.location == location:
+                            print("DIRECT HIT SIR")
+                            canonBreaked = Armored.CanonBreak(self)
                             if self.armor - armor < 0:
                                 self.hp -= (hp + armor - self.armor)
                                 print((f"-{int((hp + armor - self.armor))}hp\n-{self.armor} armor"))
@@ -229,10 +221,19 @@ class Armored():
                                 self.hp -= hp
                                 self.armor -= armor
                                 print((f"-{int((hp))}hp\n-{int(armor)} armor"))
+                            return canonBreaked
+                        else:
+                            print("MISS SIR")
+                    elif bullet == "ST":
+                        canonBreaked = Armored.CanonBreak(self)
+                        self.hp -= hp * (1 - ((self.armor / 1.5) / self.armorPercent))
+                        print((f"-{int(hp * (1 - ((self.armor / 1.5) / self.armorPercent)))}hp"))
+                        print(
+                            f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
+                        print(
 
+                            "------------------------------------------------------------------------------------")
                         return canonBreaked
-                    else:
-                        print("MISS SIR")
 
             else:
                 self.armor = 0

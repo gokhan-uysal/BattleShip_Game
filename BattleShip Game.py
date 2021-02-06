@@ -7,7 +7,7 @@ from Aircraft_Carrier import AircraftCarrier
 
 
 nameList = ["Gökhan","Suhan"]
-typeList = ["Destroyer","Cruiser"]
+typeList = ["Destroyer","Carrier"]
 
 
 """
