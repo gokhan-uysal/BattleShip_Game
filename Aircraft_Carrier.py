@@ -13,7 +13,11 @@ class AircraftCarrier():
         self.numberOfAirStrike=30
         self.selfDefense = 1
         self.numberOfStealth=1
+        self.location=0
+        if self.Location==0:
+            AircraftCarrier.CurrentLocation(self)
         pass
+
 
     def AircraftBreak(self):
         Chance = random.randrange(0, 21)
@@ -47,6 +51,22 @@ class AircraftCarrier():
                     return int(number)
         pass
 
+    def CurrentLocation(self):
+        f = open("Carrier Air Strike Map", "r")
+        print(f.read())
+        loop = 0
+        while (loop == 0):
+            number = input(f"Select your position Captain {self.name}")
+            if number.isalpha():
+                print(f"Sir {number} is not a number")
+            else:
+                if int(number) > 9 or int(number) <= 0:
+                    print(f"Sir {int(number)} is out of map")
+                else:
+                    loop += 1
+                    self.location = int(number)
+        pass
+
     def Location(self):
         loop=0
         while (loop==0):
@@ -54,11 +74,12 @@ class AircraftCarrier():
             if number.isalpha():
                 print(f"Sir {number} is not a number")
             else:
-                if 0> int(number) > 9:
+                if  int(number) > 9 or int(number)<=0:
                     print(f"Sir {int(number)} is out of map")
                 else:
                     loop += 1
                     return int(number)
+        print("------------------------------------------------------------------------------------")
         pass
 
     def ShipFire(self ,round , breaked):
@@ -290,7 +311,7 @@ class AircraftCarrier():
                     aircraftBreak = AircraftCarrier.AircraftBreak(self)
                     self.hp -= hp
                     self.armor = 0
-                    print((f"-{int(hp)}hp\n-{int(armor)} armor"))
+                    print((f"-{int(hp+armor)}hp"))
                     print(
                         f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfAirStrike} airStrike left.")
                     print("------------------------------------------------------------------------------------")

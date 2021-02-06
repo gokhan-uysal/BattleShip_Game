@@ -11,20 +11,24 @@ class Armored():
         self.numberOfCanons = 8
         self.selfDefense = 2
         self.Location = 0
+        if self.Location==0:
+            Armored.CurrentLocation(self)
         pass
 
-    def Location(self):
+    def CurrentLocation(self):
+        f = open("Carrier Air Strike Map", "r")
+        print(f.read())
         loop = 0
         while (loop == 0):
             number = input(f"Select your position Captain {self.name}")
             if number.isalpha():
                 print(f"Sir {number} is not a number")
             else:
-                if 0 > int(number) > 9:
+                if int(number) > 9 or int(number) <= 0:
                     print(f"Sir {int(number)} is out of map")
                 else:
                     loop += 1
-                    return int(number)
+                    self.location = int(number)
         pass
 
     def CanonBreak(self):
@@ -59,7 +63,7 @@ class Armored():
                         f"Firing AP shells with {self.numberOfCanons} out of {self.numberOfCanons+breaked} canons Captain {self.name}.\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
                     print("------------------------------------------------------------------------------------")
                     self.numberOfCanons += breaked
-                    return (int(hp), int(armor), "AP")
+                    return (int(hp), int(armor), "AP" , 0)
 
 
                 elif bulletType.upper() == "HP":
@@ -69,11 +73,11 @@ class Armored():
                         f"Firing HP shells with {self.numberOfCanons} out of {self.numberOfCanons+breaked} canons Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
                     print("------------------------------------------------------------------------------------")
                     self.numberOfCanons += breaked
-                    return (int(hp), 0, "HP")
+                    return (int(hp), 0, "HP" ,0)
         else:
             print("RELOADING SIR.......")
             print("------------------------------------------------------------------------------------")
-            return (0, 0, "NONE")
+            return (0, 0, "NONE" ,0)
         pass
 
     def ShipDefense(self, hp, armor, round, bullet , location=0):
@@ -212,7 +216,7 @@ class Armored():
                             self.hp -= hp * (1 - ((self.armor / 1.5) / self.armorPercent))
                             print((f"-{int(hp * (1 - ((self.armor / 1.5) / self.armorPercent)))}hp"))
                             print(
-                                f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
+                                f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor.")
                             print(
                                 "------------------------------------------------------------------------------------")
 
@@ -322,11 +326,26 @@ class Armored():
                         print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                         print("------------------------------------------------------------------------------------")
                         return canonBreaked
+
                 elif bullet == "ST" or bullet == "A2":
-                    CurrentLocation = Armored.Location(self)
-                    if CurrentLocation == location:
+                    if bullet == "A2":
+                        if self.location == location:
+                            print("DIRECT HIT SIR")
+                            canonBreaked = Armored.CanonBreak(self)
+                            self.armor = 0
+                            self.hp -= (hp + armor)
+                            print((f"-{int(hp + armor)}hp"))
+                            print(
+                                f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
+                            print(
+                                "------------------------------------------------------------------------------------")
+                            return canonBreaked
+
+                        else:
+                            print("MISS SIR")
+                    else:
                         print("DIRECT HIT SIR")
-                        canonBreaked = Armored.CanonBreak(self)
+                        canonBreaked =Armored.CanonBreak(self)
                         self.armor = 0
                         self.hp -= (hp + armor)
                         print((f"-{int(hp + armor)}hp"))
@@ -334,9 +353,6 @@ class Armored():
                             f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
                         print("------------------------------------------------------------------------------------")
                         return canonBreaked
-
-                    else:
-                        print("MISS SIR")
 
         print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
         print("------------------------------------------------------------------------------------")

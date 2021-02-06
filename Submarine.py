@@ -3,7 +3,7 @@ class Submarine():
     def __init__(self, name):
         self.name=name
         self.type="Submarine"
-        self.hp = 350
+        self.hp = 400
         self.armor = 800
         if self.armor<0:
             self.armor=0
@@ -12,22 +12,25 @@ class Submarine():
         self.numberOfJericho = 3
         self.numberOfTorpedoes = 6
         self.selfDefense = 1
-        self.criticHit = 1
         self.Location = 0
+        if self.Location==0:
+            Submarine.CurrentLocation(self)
         pass
 
-    def Location(self):
+    def CurrentLocation(self):
+        f = open("Carrier Air Strike Map", "r")
+        print(f.read())
         loop = 0
         while (loop == 0):
             number = input(f"Select your position Captain {self.name}")
             if number.isalpha():
                 print(f"Sir {number} is not a number")
             else:
-                if 0 > int(number) > 9:
+                if int(number) > 9 or int(number) <= 0:
                     print(f"Sir {int(number)} is out of map")
                 else:
                     loop += 1
-                    return int(number)
+                    self.location = int(number)
         pass
 
     def MissileBreak(self):
@@ -72,7 +75,7 @@ class Submarine():
                                 "------------------------------------------------------------------------------------")
 
                         i += 1
-                        return (int(hp), int(armor), "Nuce")
+                        return (int(hp), int(armor), "Nuce" , 0)
 
                     elif nuces.strip().lower() == "no":
                         bulletType = str(
@@ -87,7 +90,7 @@ class Submarine():
                                 f"Firing 1 Torpedoes out of {self.numberOfTorpedoes} Captain {self.name}\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
                             print(
                                 "------------------------------------------------------------------------------------")
-                            return (int(hp), int(armor), "TP")
+                            return (int(hp), int(armor), "TP" , 0)
                         elif bulletType.strip().upper() == "JR":
                             self.numberOfJericho -= 1
                             hit = 350
@@ -97,7 +100,7 @@ class Submarine():
                                 f"Firing 1 Jericho Missiles out of {self.numberOfJericho} Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
                             print(
                                 "------------------------------------------------------------------------------------")
-                            return (int(hp), 0, "JR")
+                            return (int(hp), 0, "JR" , 0)
                         else:
                             print("Waiting for your order....")
 
@@ -112,7 +115,7 @@ class Submarine():
                             f"Firing 1 Torpedoes out of {self.numberOfTorpedoes} Captain {self.name}\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
                         print(
                             "------------------------------------------------------------------------------------")
-                        return (int(hp), int(armor), "TP")
+                        return (int(hp), int(armor), "TP" , 0)
                     elif self.numberOfTorpedoes <= 0 and self.numberOfJericho > 0:
                         print("Sir we are out of Torpedoes")
                         self.numberOfJericho -= 1
@@ -123,7 +126,7 @@ class Submarine():
                             f"Firing 1 Jericho Missiles out of {self.numberOfJericho} Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
                         print(
                             "------------------------------------------------------------------------------------")
-                        return (int(hp), 0, "JR")
+                        return (int(hp), 0, "JR" , 0)
                     elif self.numberOfNuces <= 0 and self.numberOfJericho <= 0 and self.numberOfTorpedoes <= 0:
                         print(f"It was a pleasure to serve you sir {self.name}")
                         print(
@@ -141,7 +144,7 @@ class Submarine():
                     f"Firing 1 Torpedoes out of {self.numberOfTorpedoes} Captain {self.name}\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
                 print(
                     "------------------------------------------------------------------------------------")
-                return (int(hp), int(armor), "TP")
+                return (int(hp), int(armor), "TP" , 0)
 
             elif self.numberOfTorpedoes <= 0 and self.numberOfJericho > 0:
                 print("Sir we are out of Torpedoes")
@@ -152,11 +155,11 @@ class Submarine():
                     f"Firing Jericho Missiles out of {self.numberOfJericho} Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
                 print(
                     "------------------------------------------------------------------------------------")
-                return (int(hp), 0, "JR")
+                return (int(hp), 0, "JR" , 0)
             elif self.numberOfNuces <= 0 and self.numberOfJericho <= 0:
                 print(f"Sir we are out of everything but one chance in ROUND 9 {self.name}")
                 print("------------------------------------------------------------------------------------")
-                return (0, 0, "None")
+                return (0, 0, "None" , 0)
             i = 0
             while (i == 0):
                 bulletType = str(input(f"Select the bullet type {self.name}:\nTP(Torpedoes) ,JR(Jericho Missile)"))
@@ -170,7 +173,7 @@ class Submarine():
                         f"Firing 1 Torpedoes out of {self.numberOfTorpedoes} Captain {self.name}\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
                     print(
                         "------------------------------------------------------------------------------------")
-                    return (int(hp), int(armor), "TP")
+                    return (int(hp), int(armor), "TP" , 0)
 
                 elif bulletType.strip().upper() == "JR":
                     self.numberOfJericho -= 1
@@ -180,7 +183,7 @@ class Submarine():
                     print(
                         f"Firing Jericho Missiles out of {self.numberOfJericho} Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
                     print("------------------------------------------------------------------------------------")
-                    return (int(hp), 0, "JR")
+                    return (int(hp), 0, "JR" , 0)
                 else:
                     print("Waiting for your order....")
         pass
@@ -275,7 +278,6 @@ class Submarine():
                     CurrentLocation = Submarine.Location(self)
                     if CurrentLocation == location:
                         print("DIRECT HIT SIR")
-                        canonBreaked = Submarine.CanonBreak(self)
                         if bullet == "ST":
                             self.hp -= hp * (1 - ((self.armor / 1.5) / self.armorPercent))
                             print((f"-{int(hp * (1 - ((self.armor / 1.5) / self.armorPercent)))}hp"))
@@ -294,7 +296,6 @@ class Submarine():
                                 self.armor -= armor
                                 print((f"-{int((hp))}hp\n-{int(armor)} armor"))
 
-                        return canonBreaked
                     else:
                         print("MISS SIR")
 
@@ -350,9 +351,24 @@ class Submarine():
                                     print(f"-{int(hp+armor)}hp")
                                 else:
                                     print("Waiting for your order....")
+
                 elif bullet == "ST" or bullet == "A2":
-                    CurrentLocation = Submarine.Location(self)
-                    if CurrentLocation == location:
+                    if bullet == "A2":
+                        if self.location == location:
+                            print("DIRECT HIT SIR")
+                            canonBreaked = Submarine.CanonBreak(self)
+                            self.armor = 0
+                            self.hp -= (hp + armor)
+                            print((f"-{int(hp + armor)}hp"))
+                            print(
+                                f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
+                            print(
+                                "------------------------------------------------------------------------------------")
+                            return canonBreaked
+
+                        else:
+                            print("MISS SIR")
+                    else:
                         print("DIRECT HIT SIR")
                         canonBreaked = Submarine.CanonBreak(self)
                         self.armor = 0
@@ -362,9 +378,6 @@ class Submarine():
                             f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
                         print("------------------------------------------------------------------------------------")
                         return canonBreaked
-
-                    else:
-                        print("MISS SIR")
 
         print(f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor ,  {self.numberOfTorpedoes} tp and {self.numberOfJericho} jericho left.")
         print("------------------------------------------------------------------------------------")

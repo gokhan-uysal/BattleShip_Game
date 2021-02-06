@@ -77,7 +77,7 @@ Nuclear Submarine (Sea Wolf):
         *Deep dive
             (Can not avoid Torpedoes)
     Disadvantages:
-        *350 health
+        *400 health
         *No additional canons
 
 Aircraft Carrier (USS Gerald R. Ford):
