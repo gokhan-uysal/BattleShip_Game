@@ -279,7 +279,6 @@ class Submarine():
                     if bullet == "A2":
                         if self.location == location:
                             print("DIRECT HIT SIR")
-                            canonBreaked = Submarine.CanonBreak(self)
                             if self.armor - armor < 0:
                                 self.hp -= (hp + armor - self.armor)
                                 print((f"-{int((hp + armor - self.armor))}hp\n-{self.armor} armor"))
@@ -288,19 +287,12 @@ class Submarine():
                                 self.hp -= hp
                                 self.armor -= armor
                                 print((f"-{int((hp))}hp\n-{int(armor)} armor"))
-                            return canonBreaked
+
                         else:
                             print("MISS SIR")
                     elif bullet == "ST":
-                        canonBreaked = Submarine.CanonBreak(self)
                         self.hp -= hp * (1 - ((self.armor / 1.5) / self.armorPercent))
                         print((f"-{int(hp * (1 - ((self.armor / 1.5) / self.armorPercent)))}hp"))
-                        print(
-                            f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
-                        print(
-
-                            "------------------------------------------------------------------------------------")
-                        return canonBreaked
 
             else:
                 self.armor=0
@@ -359,28 +351,17 @@ class Submarine():
                     if bullet == "A2":
                         if self.location == location:
                             print("DIRECT HIT SIR")
-                            canonBreaked = Submarine.CanonBreak(self)
                             self.armor = 0
                             self.hp -= (hp + armor)
                             print((f"-{int(hp + armor)}hp"))
-                            print(
-                                f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
-                            print(
-                                "------------------------------------------------------------------------------------")
-                            return canonBreaked
 
                         else:
                             print("MISS SIR")
                     else:
                         print("DIRECT HIT SIR")
-                        canonBreaked = Submarine.CanonBreak(self)
                         self.armor = 0
                         self.hp -= (hp + armor)
                         print((f"-{int(hp + armor)}hp"))
-                        print(
-                            f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
-                        print("------------------------------------------------------------------------------------")
-                        return canonBreaked
 
         print(f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor ,  {self.numberOfTorpedoes} tp and {self.numberOfJericho} jericho left.")
         print("------------------------------------------------------------------------------------")

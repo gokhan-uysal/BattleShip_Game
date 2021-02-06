@@ -79,6 +79,7 @@ def main():
     ROUND = 1
     while not Ship1.hp <= 0 or not Ship2.hp <= 0 and not ROUND <= 0:
         if ROUND==1:
+            print("------------------------------------------------------------------------------------")
             print(f"~ROUND{ROUND}~")
             hp1, armor1, AMMUNATION ,location = Ship1.ShipFire(ROUND , 0 )
             if Ship1.hp <= 0:

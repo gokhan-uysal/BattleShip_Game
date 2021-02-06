@@ -333,7 +333,7 @@ class Destroyer():
                         print("------------------------------------------------------------------------------------")
                         return canonBreaked
 
-        print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
+        print(f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
         print("------------------------------------------------------------------------------------")
         return 0
         pass

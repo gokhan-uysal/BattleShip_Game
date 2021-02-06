@@ -91,6 +91,7 @@ class AircraftCarrier():
                 if craftSelect.upper().strip()=="ST":
                     hp=150
                     i+=1
+                    self.numberOfStealth-=1
                     print("Ready to take off")
                     print(f"Lifting B-2A Spirit Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
                     print("------------------------------------------------------------------------------------")
@@ -103,7 +104,7 @@ class AircraftCarrier():
                     number=AircraftCarrier.AircraftCount(self)
                     print(f"All {number}/{self.numberOfAirStrike} ready to take off!")
                     print(f"TARGET: {Location}")
-                    hit = number * 30
+                    hit = number * 50
                     percent = random.randrange(1, 41) / 100
                     hp, armor = hit * percent, hit * (1 - percent)
                     self.numberOfAirStrike-=number
@@ -118,7 +119,7 @@ class AircraftCarrier():
                 number = AircraftCarrier.AircraftCount(self)
                 print(f"All {number}/{self.numberOfAirStrike} ready to take off!")
                 print(f"TARGET: {Location}")
-                hit = number * 30
+                hit = number * 50
                 percent = random.randrange(1, 41) / 100
                 hp, armor = hit * percent, hit * (1 - percent)
                 self.numberOfAirStrike -= number

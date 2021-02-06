@@ -229,7 +229,7 @@ class Armored():
                         self.hp -= hp * (1 - ((self.armor / 1.5) / self.armorPercent))
                         print((f"-{int(hp * (1 - ((self.armor / 1.5) / self.armorPercent)))}hp"))
                         print(
-                            f"Captain {self.name} we have {int(self.hp)}hp , {int(self.armor)} armor and {self.numberOfTorpedoes} tp left.")
+                            f"Captain {self.name} we have {int(self.hp)}hp and {int(self.armor)} armor left.")
                         print(
 
                             "------------------------------------------------------------------------------------")
