@@ -113,7 +113,7 @@ class Armored():
 
 
                 elif bullet == "TP":
-                    Chance = random.randrange(1, 2)
+                    Chance = random.randrange(1, 4)
                     if Chance == 1:
                         print("MISS SIR")
                     else:
@@ -251,7 +251,7 @@ class Armored():
                         return canonBreaked
 
                 elif bullet == "TP":
-                    Chance = random.randrange(1, 2)
+                    Chance = random.randrange(1, 4)
                     if Chance == 1:
                         print("MISS SIR")
                     else:

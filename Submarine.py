@@ -116,6 +116,7 @@ class Submarine():
                         print(
                             "------------------------------------------------------------------------------------")
                         return (int(hp), int(armor), "TP" , 0)
+
                     elif self.numberOfTorpedoes <= 0 and self.numberOfJericho > 0:
                         print("Sir we are out of Torpedoes")
                         self.numberOfJericho -= 1
@@ -127,10 +128,12 @@ class Submarine():
                         print(
                             "------------------------------------------------------------------------------------")
                         return (int(hp), 0, "JR" , 0)
+
                     elif self.numberOfNuces <= 0 and self.numberOfJericho <= 0 and self.numberOfTorpedoes <= 0:
                         print(f"It was a pleasure to serve you sir {self.name}")
                         print(
                             "------------------------------------------------------------------------------------")
+
                     else:
                         print("Waiting for your order....")
         else:
@@ -156,6 +159,7 @@ class Submarine():
                 print(
                     "------------------------------------------------------------------------------------")
                 return (int(hp), 0, "JR" , 0)
+
             elif self.numberOfNuces <= 0 and self.numberOfJericho <= 0:
                 print(f"Sir we are out of everything but one chance in ROUND 9 {self.name}")
                 print("------------------------------------------------------------------------------------")
