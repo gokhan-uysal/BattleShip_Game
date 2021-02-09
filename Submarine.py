@@ -79,7 +79,8 @@ class Submarine():
                         print(f"It was a pleasure to serve you sir {self.name}")
                         print(
                             "------------------------------------------------------------------------------------")
-                        i+=1
+                        i += 1
+                        return (0 , 0 , "NONE" , 0)
 
                     else:
                         print("Waiting for your order....")
@@ -95,7 +96,7 @@ class Submarine():
                         print(
                             "------------------------------------------------------------------------------------")
                         self.numberOfNuces -= 1
-                        chance = random.randrange(1, 6)
+                        chance = random.randrange(1, 5)
                         if chance == 2:
                             hp = 0
                             armor = 0
