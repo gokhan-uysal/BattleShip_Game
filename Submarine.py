@@ -48,9 +48,41 @@ class Submarine():
             i = 0
             while (i == 0):
                 if self.numberOfNuces <= 0:
-                    print(f"We are out of Nuclear Missiles sir!!")
-                    i += 1
-                    continue
+                    if self.numberOfJericho <= 0 and self.numberOfTorpedoes > 0:
+                        print(f"We are out of Nuclear Missiles sir!!")
+                        print("Sir we are out of Jericho Missiles")
+                        self.numberOfTorpedoes -= 1
+                        hit = 250
+                        percent = random.randrange(0, 45) / 100
+                        hp, armor = hit * percent, hit * (1 - percent)
+                        i += 1
+                        print(
+                            f"Firing 1 Torpedoes out of {self.numberOfTorpedoes} Captain {self.name}\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
+                        print(
+                            "------------------------------------------------------------------------------------")
+                        return (int(hp), int(armor), "TP" , 0)
+
+                    elif self.numberOfTorpedoes <= 0 and self.numberOfJericho > 0:
+                        print(f"We are out of Nuclear Missiles sir!!")
+                        print("Sir we are out of Torpedoes")
+                        self.numberOfJericho -= 1
+                        hit = 350
+                        hp = hit
+                        i += 1
+                        print(
+                            f"Firing 1 Jericho Missiles out of {self.numberOfJericho} Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
+                        print(
+                            "------------------------------------------------------------------------------------")
+                        return (int(hp), 0, "JR" , 0)
+
+                    elif self.numberOfNuces <= 0 and self.numberOfJericho <= 0 and self.numberOfTorpedoes <= 0:
+                        print(f"It was a pleasure to serve you sir {self.name}")
+                        print(
+                            "------------------------------------------------------------------------------------")
+                        i+=1
+
+                    else:
+                        print("Waiting for your order....")
 
                 else:
                     nuces = str(input("Sir do you want to fire Nuclear Missile [yes/no]....."))
@@ -104,38 +136,8 @@ class Submarine():
                         else:
                             print("Waiting for your order....")
 
-                    if self.numberOfJericho <= 0 and self.numberOfTorpedoes > 0:
-                        print("Sir we are out of Jericho Missiles")
-                        self.numberOfTorpedoes -= 1
-                        hit = 250
-                        percent = random.randrange(0, 45) / 100
-                        hp, armor = hit * percent, hit * (1 - percent)
-                        i += 1
-                        print(
-                            f"Firing 1 Torpedoes out of {self.numberOfTorpedoes} Captain {self.name}\nHopping to deal {int(hp + armor)} damage to the enemy ship!!")
-                        print(
-                            "------------------------------------------------------------------------------------")
-                        return (int(hp), int(armor), "TP" , 0)
 
-                    elif self.numberOfTorpedoes <= 0 and self.numberOfJericho > 0:
-                        print("Sir we are out of Torpedoes")
-                        self.numberOfJericho -= 1
-                        hit = 350
-                        hp = hit
-                        i += 1
-                        print(
-                            f"Firing 1 Jericho Missiles out of {self.numberOfJericho} Captain {self.name}.\nHopping to deal {int(hp)} damage to the enemy ship!!")
-                        print(
-                            "------------------------------------------------------------------------------------")
-                        return (int(hp), 0, "JR" , 0)
 
-                    elif self.numberOfNuces <= 0 and self.numberOfJericho <= 0 and self.numberOfTorpedoes <= 0:
-                        print(f"It was a pleasure to serve you sir {self.name}")
-                        print(
-                            "------------------------------------------------------------------------------------")
-
-                    else:
-                        print("Waiting for your order....")
         else:
             if self.numberOfJericho <= 0 and self.numberOfTorpedoes > 0:
                 print("Sir we can't launch Jericho Missiles")

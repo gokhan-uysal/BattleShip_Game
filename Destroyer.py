@@ -23,6 +23,8 @@ class Destroyer():
             number = input(f"Select your position Captain {self.name}")
             if number.isalpha():
                 print(f"Sir {number} is not a number")
+            elif number.isalnum():
+                print(f"Sir {number} is not a number")
             else:
                 if int(number) > 9 or int(number) <= 0:
                     print(f"Sir {int(number)} is out of map")

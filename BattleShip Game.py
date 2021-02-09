@@ -5,9 +5,9 @@ from Armored import Armored
 from Submarine import Submarine
 from Aircraft_Carrier import AircraftCarrier
 
-"""
+
 nameList = ["Gökhan","Suhan"]
-typeList = ["Destroyer","Carrier"]
+typeList = ["Submarine","Armored"]
 """
 
 nameList = []
@@ -51,7 +51,7 @@ for i in range(1, 3):
     typeList.append(type)
 print("Now Let's Start The Battle")
 print("------------------------------------------------------------------------------------")
-
+"""
 
 def main():
     if typeList[0]=="Destroyer":
