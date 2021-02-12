@@ -1,11 +1,11 @@
-import random, Greeting
+import Greeting
 from Destroyer import Destroyer
 from Cruiser import Cruiser
 from Armored import Armored
 from Submarine import Submarine
 from Aircraft_Carrier import AircraftCarrier
 
-
+"""
 nameList = ["Gökhan","Suhan"]
 typeList = ["Submarine","Armored"]
 """
@@ -51,7 +51,6 @@ for i in range(1, 3):
     typeList.append(type)
 print("Now Let's Start The Battle")
 print("------------------------------------------------------------------------------------")
-"""
 
 def main():
     if typeList[0]=="Destroyer":
