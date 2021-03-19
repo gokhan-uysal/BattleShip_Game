@@ -11,7 +11,7 @@ class Destroyer():
         self.numberOfCanons = 4
         self.numberOfTorpedoes = 3
         self.selfDefense = 1
-        self.Location=0
+        self.Location=1
         if self.Location==0:
             Destroyer.CurrentLocation(self)
 
