@@ -1,0 +1,7 @@
+# gitignore file for os specific and config files
+/.idea
+/__pycache__
+*.zip
+*.pyc
+.[dD][sS]_[sS]tore
+
