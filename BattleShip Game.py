@@ -1,3 +1,5 @@
+#!/usr/local/bin/python3.9
+
 import Greeting
 from Destroyer import Destroyer
 from Cruiser import Cruiser
